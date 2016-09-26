@@ -1,6 +1,6 @@
-(defproject exponent/lein-template "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+(defproject exponent/lein-template "0.1.0"
+  :description "Exponentjs template for Clojurescript."
+  :url "https://github.com/tiensonqin/exponent-template"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :eval-in-leiningen true)
