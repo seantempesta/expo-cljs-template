@@ -1,10 +1,12 @@
-# exponent-template
+# Exponent
 
 [Exponentjs](https://getexponent.com/) template for [Clojurescript](http://clojurescript.org/).
 
 ## Usage
 
-lein new exponent-template your-project
+```shell
+lein new exponent your-project
+```
 
 ## License
 
