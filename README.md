@@ -4,10 +4,18 @@
 
 Most of the ideas come from [exp-cljstest](https://github.com/exponentjs/exp-cljstest) by [@nikki93](https://github.com/nikki93).
 
+## Setup
+    1. install [Exponent XDE and mobile client ](https://docs.getexponent.com/versions/v10.0.0/introduction/installation.html)
+    2. install [Lein](http://leiningen.org/#install)
+
 ## Usage
 
 ```shell
 lein new exponent your-project
+
+cd your-project
+
+lein figwheel
 ```
 
 ## License

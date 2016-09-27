@@ -4,14 +4,7 @@
   "description": "",
   "author": "",
   "private": true,
-  "main": "main.js",
-  "exp": {
-    "name": "{{name}}",
-    "packagerOpts": {
-      "root": "js",
-      "nonPersistent": ""
-    }
-  },
+  "main": "js/main.js",
   "dependencies": {
     "@exponent/ex-navigation": "^1.5.26",
     "@exponent/samples": "^1.0.2",

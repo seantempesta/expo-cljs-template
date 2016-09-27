@@ -36,3 +36,5 @@
   "Stops figwheel"
   []
   (ra/stop-figwheel!))
+
+(start-figwheel)
