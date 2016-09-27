@@ -10,7 +10,8 @@
   :plugins [[lein-cljsbuild "1.1.1"]
             [lein-figwheel "0.5.0-6"]]
   :clean-targets ["target/"]
-  :aliases {"prod-build" ^{:doc "Recompile code with prod profile."}
+  :aliases {"figwheel" ["run" "-m" "user"]
+            "prod-build" ^{:doc "Recompile code with prod profile."}
             ["do" "clean"
              ["with-profile" "prod" "cljsbuild" "once" "main"]]}
   :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.0-6"]
