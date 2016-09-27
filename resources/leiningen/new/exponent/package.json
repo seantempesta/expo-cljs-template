@@ -1,10 +1,17 @@
 {
   "name": "{{name}}",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "author": "",
   "private": true,
   "main": "main.js",
+  "exp": {
+    "name": "{{name}}",
+    "packagerOpts": {
+      "root": "js",
+      "nonPersistent": ""
+    }
+  },
   "dependencies": {
     "@exponent/ex-navigation": "^1.5.26",
     "@exponent/samples": "^1.0.2",

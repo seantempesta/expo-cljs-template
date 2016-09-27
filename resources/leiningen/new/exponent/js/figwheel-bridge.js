@@ -10,7 +10,7 @@ var debugEnabled = false;
 var config = {
     basePath: "target/",
     googBasePath: 'goog/',
-    serverPort: 19001
+    serverPort: 8081
 };
 
 var React = require('react');
@@ -52,7 +52,12 @@ var figwheelApp = function (platform, devHost) {
         },
         componentDidMount: function () {
             var app = this;
-            if (typeof goog === "undefined") {
+          if (typeof goog === "undefined") {
+                var url = this.props.url ||
+                          this.props.exp.manifest.bundleUrl;
+                var hostPort = url.split('/')[2].split(':');
+                devHost = hostPort[0];
+                config.serverPort = hostPort[1];
                 loadApp(platform, devHost, function (appRoot) {
                     app.setState({root: appRoot, loaded: true})
                 });
@@ -197,13 +202,13 @@ function setCorrectWebSocketImpl() {
 
 function loadApp(platform, devHost, onLoadCb) {
     serverHost = devHost;
-    fileBasePath = config.basePath + platform;
+    fileBasePath = config.basePath;
 
     // callback when app is ready to get the reloadable component
-    var mainJs = '/env/' + platform + '/main.js';
+    var mainJs = '/env/main.js';
     evalListeners.push(function (url) {
         if (url.indexOf(mainJs) > -1) {
-            onLoadCb(env[platform].main.root_el);
+            onLoadCb(env.main.root_el);
             console.info('Done loading Clojure app');
         }
     });

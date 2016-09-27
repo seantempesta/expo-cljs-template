@@ -15,23 +15,18 @@
              [".hgignore" (render ".hgignore" data)]
              ["LICENSE" (render "LICENSE" data)]
              ["exp.json" (render "exp.json" data)]
-             ["figwheel-bridge.js" (render "figwheel-bridge.js" data)]
-             ["index.android.js" (render "index.android.js" data)]
-             ["index.ios.js" (render "index.ios.js" data)]
-             ["main.js" (render "main.js" data)]
+             ["js/figwheel-bridge.js" (render "js/figwheel-bridge.js" data)]
+             ["js/main.js" (render "js/main.js" data)]
              ["package.json" (render "package.json" data)]
              ["project.clj" (render "project.clj" data)]
              ["readme.md" (render "readme.md" data)]
-             ["env/dev/env/android/main.cljs" (render "env/dev/env/android/main.cljs" data)]
-             ["env/dev/env/ios/main.cljs" (render "env/dev/env/ios/main.cljs" data)]
+             ["env/dev/env/main.cljs" (render "env/dev/env/main.cljs" data)]
+             ["env/dev/env/index.cljs" (render "env/dev/env/index.cljs" data)]
              ["env/dev/user.clj" (render "env/dev/user.clj" data)]
-             ["env/prod/env/android/main.cljs" (render "env/prod/env/android/main.cljs" data)]
-             ["env/prod/env/ios/main.cljs" (render "env/prod/env/ios/main.cljs" data)]
+             ["env/prod/env/main.cljs" (render "env/prod/env/main.cljs" data)]
              ["src/cljsjs/react.cljs" (render "src/cljsjs/react.cljs" data)]
-             ["src/{{sanitized}}/exponent/android/core.cljs"
-              (render "src/exponent/android/core.cljs" data)]
-             ["src/{{sanitized}}/ios/core.cljs"
-              (render "src/exponent/ios/core.cljs" data)]
+             ["src/{{sanitized}}/core.cljs"
+              (render "src/exponent/core.cljs" data)]
              ["src/{{sanitized}}/db.cljs"
               (render "src/exponent/db.cljs" data)]
              ["src/{{sanitized}}/handlers.cljs"
