@@ -5,4 +5,4 @@ window.goog = {
   provide() {},
   require() {},
 };
-require('../target/index.js');
+require('../target/env/index.js');

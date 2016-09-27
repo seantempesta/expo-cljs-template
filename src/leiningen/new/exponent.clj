@@ -1,8 +1,9 @@
 (ns leiningen.new.exponent
-  (:require [leiningen.new.templates :refer [renderer name-to-path ->files]]
+  (:require [leiningen.new.templates :refer [renderer raw-resourcer name-to-path ->files]]
             [leiningen.core.main :as main]))
 
 (def render (renderer "exponent"))
+(def raw (raw-resourcer "exponent"))
 
 (defn exponent
   [name]
@@ -17,11 +18,13 @@
              ["exp.json" (render "exp.json" data)]
              ["js/figwheel-bridge.js" (render "js/figwheel-bridge.js" data)]
              ["js/main.js" (render "js/main.js" data)]
+             ["assets/images/cljs.png" (raw "assets/images/cljs.png")]
+             ["assets/images/cljs@2x.png" (raw "assets/images/cljs@2x.png")]
+             ["assets/images/cljs@3x.png" (raw "assets/images/cljs@3x.png")]
              ["package.json" (render "package.json" data)]
              ["project.clj" (render "project.clj" data)]
              ["readme.md" (render "readme.md" data)]
              ["env/dev/env/main.cljs" (render "env/dev/env/main.cljs" data)]
-             ["env/dev/env/index.cljs" (render "env/dev/env/index.cljs" data)]
              ["env/dev/user.clj" (render "env/dev/user.clj" data)]
              ["env/prod/env/main.cljs" (render "env/prod/env/main.cljs" data)]
              ["src/cljsjs/react.cljs" (render "src/cljsjs/react.cljs" data)]
