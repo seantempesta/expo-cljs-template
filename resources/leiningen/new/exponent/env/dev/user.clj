@@ -37,4 +37,4 @@
   []
   (ra/stop-figwheel!))
 
-(start-figwheel)
+(def -main start-figwheel)
