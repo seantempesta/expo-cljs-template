@@ -2,7 +2,17 @@
 
 [Exponentjs](https://getexponent.com/) template for [Clojurescript](http://clojurescript.org/).
 
-Most of the ideas come from [exp-cljstest](https://github.com/exponentjs/exp-cljstest) by [@nikki93](https://github.com/nikki93).
+Most of the ideas came from
+[re-natal](https://github.com/drapanjanas/re-natal) by [@drapanjanas](https://github.com/drapanjanas) and
+[exp-cljstest](https://github.com/exponentjs/exp-cljstest) by [@nikki93](https://github.com/nikki93).
+
+## Features
+#### 1. support reagent and om (defaults to reagent)
+
+``` shell
+lein new exponent your-project +reagent
+lein new exponent your-project +om
+```
 
 ## Setup
 #### 1. install [Exponent XDE and mobile client](https://docs.getexponent.com/versions/v10.0.0/introduction/installation.html)
@@ -35,6 +45,11 @@ lein figwheel
 ```
 3. Click `restart` button on Exponent XDE
 
+### Production build (generates main.js)
+
+``` shell
+lein prod-build
+```
 
 ## License
 
