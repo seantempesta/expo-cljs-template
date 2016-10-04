@@ -9,7 +9,7 @@
                  [re-frame "0.6.0"]]
   :plugins [[lein-cljsbuild "1.1.1"]
             [lein-figwheel "0.5.4-7"]]
-  :clean-targets ["target/"]
+  :clean-targets ["target/" "main.js"]
   :aliases {"figwheel" ["run" "-m" "user" "--figwheel"]
             "re-generate" ["run" "-m" "user" "--re-generate"]
             "prod-build" ^{:doc "Recompile code with prod profile."}
