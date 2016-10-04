@@ -23,6 +23,11 @@
                (fn [r]
                  (str \" (str/replace (first r) #"::" "") \"))))
 
+(defn write-main-js
+  []
+  (-> "'use strict';\n\n// cljsbuild adds a preamble mentioning goog so hack around it\nwindow.goog = {\n  provide() {},\n  require() {},\n};\nrequire('./target/env/index.js');\n"
+      ((partial spit "main.js"))))
+
 (defn write-env-dev
   []
   (let [hostname (.getHostName (java.net.InetAddress/getLocalHost))
@@ -36,18 +41,26 @@
 (defn rebuild-env-index
   []
   (let [modules (->> (file-seq (io/file "assets"))
-                     (filter #(.isFile %))
+                     (filter #(and (not (re-find #"DS_Store" (str %)))
+                                   (.isFile %)))
                      (map (fn [file] (when-let [path (str file)]
                                       (str "../../" path))))
                      (concat js-modules)
                      (distinct))
         modules-map (zipmap
                      (->> modules
-                          (map #(str "::" %)))
+                          (map #(str "::"
+                                     (if (str/starts-with? % "../../assets")
+                                       (-> %
+                                        (str/replace "../../" "./")
+                                        (str/replace "@2x" "")
+                                        (str/replace "@3x" ""))
+                                       %))))
                      (->> modules
-                          (map #(format "(js/require \"%s\")" %))))]
-
-
+                          (map #(format "(js/require \"%s\")"
+                                        (-> %
+                                            (str/replace "@2x" "")
+                                            (str/replace "@3x" ""))))))]
     (try
       (-> "(ns env.index\n  (:require [env.dev :as dev]))\n\n;; undo main.js goog preamble hack\n(set! js/window.goog js/undefined)\n\n(-> (js/require \"figwheel-bridge\")\n    (.withModules %s)\n    (.start \"main\"))\n"
          (format
@@ -62,6 +75,7 @@
 (defn start-figwheel
   "Start figwheel for one or more builds"
   [& build-ids]
+  (write-main-js)
   (write-env-dev)
   (rebuild-env-index)
   (ra/start-figwheel!

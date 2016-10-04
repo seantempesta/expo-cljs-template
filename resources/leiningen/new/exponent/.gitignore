@@ -1,4 +1,4 @@
-node_modules/**/*
+node_modules/
 .exponent/**/*
 /target
 /classes
@@ -11,3 +11,4 @@ pom.xml.asc
 /.nrepl-port
 .hgignore
 .hg/
+figwheel_server.log

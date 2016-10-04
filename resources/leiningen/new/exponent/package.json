@@ -4,7 +4,7 @@
   "description": "",
   "author": "",
   "private": true,
-  "main": "js/main.js",
+  "main": "main.js",
   "dependencies": {
     "@exponent/ex-navigation": "^1.5.26",
     "@exponent/samples": "^1.0.2",

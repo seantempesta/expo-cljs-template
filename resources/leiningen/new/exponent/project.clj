@@ -31,7 +31,7 @@
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}
              :prod {:cljsbuild {:builds [{:id "main"
                                           :source-paths ["src" "env/prod"]
-                                          :compiler     {:output-to     "target/env/index.js"
+                                          :compiler     {:output-to     "main.js"
                                                          :main          "env.main"
                                                          :output-dir    "target"
                                                          :static-fns    true
