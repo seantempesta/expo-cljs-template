@@ -16,6 +16,7 @@
     "hideExponentText": false
   },
   "packagerOpts": {
-  "assetExts": ["ttf","otf"]
+    "assetExts": ["ttf","otf"],
+    "nonPersistent": ""
   }
 }
