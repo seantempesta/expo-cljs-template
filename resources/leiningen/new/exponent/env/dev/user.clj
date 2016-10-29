@@ -23,6 +23,13 @@
                (fn [r]
                  (str \" (str/replace (first r) #"::" "") \"))))
 
+(defn enable-source-maps
+  []
+  (prn "Enabled source maps.")
+  (let [path "node_modules/react-native/packager/react-packager/src/Server/index.js"]
+    (spit path
+          (str/replace (slurp path) "/\\.map$/" "/main.map$/"))))
+
 (defn write-main-js
   []
   (-> "'use strict';\n\n// cljsbuild adds a preamble mentioning goog so hack around it\nwindow.goog = {\n  provide() {},\n  require() {},\n};\nrequire('./target/env/index.js');\n"
@@ -75,6 +82,7 @@
 (defn start-figwheel
   "Start figwheel for one or more builds"
   [& build-ids]
+  (enable-source-maps)
   (write-main-js)
   (write-env-dev)
   (rebuild-env-index)

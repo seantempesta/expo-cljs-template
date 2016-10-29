@@ -2,8 +2,7 @@
 
 ### Usage
 
-#### Install Exponent
-    [XDE and mobile client](https://docs.getexponent.com/versions/v10.0.0/introduction/installation.html).
+#### Install Exponent [XDE and mobile client](https://docs.getexponent.com/versions/v10.0.0/introduction/installation.html)
 
 #### Install [Lein](http://leiningen.org/#install)
 
@@ -18,6 +17,9 @@ npm install
     lein figwheel
 
 ```
+
+### Make sure you disable live reload from the Developer Menu, also turn off Hot Module Reload.
+Since Figwheel alredy does these.
 
 ### Add new assets (images, fonts, videos, etc)
 1. Re-generate modules:

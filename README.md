@@ -30,6 +30,9 @@ npm install
 lein figwheel
 ```
 
+### Make sure you disable live reload from the Developer Menu, also turn off Hot Module Reload.
+Since Figwheel alredy does these.
+
 ### Add new assets (images, fonts, videos, etc)
 1. Re-generate modules:
 ``` shell
