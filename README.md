@@ -7,7 +7,9 @@ Most of the ideas came from
 [exp-cljstest](https://github.com/exponentjs/exp-cljstest) by [@nikki93](https://github.com/nikki93).
 
 ## Features
-#### 1. support reagent and om (defaults to reagent)
+#### 1. Support reagent and om (defaults to reagent)
+#### 2. Support source maps
+#### 3. Using external modules or assets without restarting the repl.
 
 ``` shell
 lein new exponent your-project +reagent
@@ -30,23 +32,16 @@ npm install
 lein figwheel
 ```
 
+### Add new assets or external modules
+1. `require` module:
+``` clj
+    (def cljs-logo (js/require "./assets/images/cljs.png"))
+    (def FontAwesome (js/require "@exponent/vector-icons/FontAwesome"))
+```
+2. Reload simulator or device
+
 ### Make sure you disable live reload from the Developer Menu, also turn off Hot Module Reload.
-Since Figwheel alredy does these.
-
-### Add new assets (images, fonts, videos, etc)
-1. Re-generate modules:
-``` shell
-    lein re-generate
-```
-2. Click `restart` button on Exponent XDE
-
-### Using external React Native modules
-1. Add modules to `js-modules` in `project.clj`.
-2. Re-generate modules:
-``` shell
-    lein re-generate
-```
-3. Click `restart` button on Exponent XDE
+    Since Figwheel alredy does those.
 
 ### Production build (generates main.js)
 

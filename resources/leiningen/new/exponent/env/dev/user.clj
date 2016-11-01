@@ -1,7 +1,10 @@
 (ns user
   (:require [figwheel-sidecar.repl-api :as ra]
             [clojure.java.io :as io]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [hawk.core :as hawk]
+            [clojure.tools.reader.edn :as edn]
+            [clojure.set :as set]))
 ;; This namespace is loaded automatically by nREPL
 
 ;; read project.clj to get build configs
@@ -13,19 +16,11 @@
 
 (def profiles (:profiles project-config))
 
-(def js-modules (:js-modules project-config))
-
 (def cljs-builds (get-in profiles [:dev :cljsbuild :builds]))
-
-(defn keyword->str [s]
-  (str/replace s
-               #"::(\S)*"
-               (fn [r]
-                 (str \" (str/replace (first r) #"::" "") \"))))
 
 (defn enable-source-maps
   []
-  (println "Enabled source maps.")
+  (prn "Enabled source maps.")
   (let [path "node_modules/react-native/packager/react-packager/src/Server/index.js"]
     (spit path
           (str/replace (slurp path) "/\\.map$/" "/main.map$/"))))
@@ -45,8 +40,14 @@
          ip)
         ((partial spit "env/dev/env/dev.cljs")))))
 
+(defn keyword->str [s]
+  (str/replace s
+               #"::(\S)*"
+               (fn [r]
+                 (str \" (str/replace (first r) #"::" "") \"))))
+
 (defn rebuild-env-index
-  []
+  [js-modules]
   (let [modules (->> (file-seq (io/file "assets"))
                      (filter #(and (not (re-find #"DS_Store" (str %)))
                                    (.isFile %)))
@@ -59,9 +60,9 @@
                           (map #(str "::"
                                      (if (str/starts-with? % "../../assets")
                                        (-> %
-                                        (str/replace "../../" "./")
-                                        (str/replace "@2x" "")
-                                        (str/replace "@3x" ""))
+                                           (str/replace "../../" "./")
+                                           (str/replace "@2x" "")
+                                           (str/replace "@3x" ""))
                                        %))))
                      (->> modules
                           (map #(format "(js/require \"%s\")"
@@ -70,14 +71,85 @@
                                             (str/replace "@3x" ""))))))]
     (try
       (-> "(ns env.index\n  (:require [env.dev :as dev]))\n\n;; undo main.js goog preamble hack\n(set! js/window.goog js/undefined)\n\n(-> (js/require \"figwheel-bridge\")\n    (.withModules %s)\n    (.start \"main\"))\n"
-         (format
-          (str "#js " (with-out-str (println modules-map))))
-         (keyword->str)
-         ((partial spit "env/dev/env/index.cljs")))
+          (format
+           (str "#js " (with-out-str (println modules-map))))
+          (keyword->str)
+          ((partial spit "env/dev/env/index.cljs")))
 
-      (println "Re-generate ./env/dev/env/index.cljs")
       (catch Exception e
         (println "Error: " e)))))
+
+;; Each file maybe corresponds to multiple modules.
+(defn watch-for-external-modules
+  []
+  (let [path ".js-modules.edn"]
+    (hawk/watch! [{:paths ["src"]
+                   :filter hawk/file?
+                   :handler (fn [ctx {:keys [kind file] :as event}]
+                              (let [m (edn/read-string (slurp path))
+                                    file-name   (-> (.getPath file)
+                                                    (str/replace (str (System/getProperty "user.dir") "/") ""))]
+
+                                ;; file is deleted
+                                (when (= :delete kind)
+                                  (let [new-m (dissoc m file-name)]
+                                    (spit path new-m)
+                                    (rebuild-env-index (flatten (vals new-m)))))
+
+                                (when (.exists file)
+                                  (let [content (slurp file)
+                                        js-modules (some->>
+                                                    content
+                                                    (re-seq #"\(js/require \"([^\"]+)\"\)")
+                                                    (map last)
+                                                    (vec))
+                                        commented-modules (some->>
+                                                           content
+                                                           (re-seq #"[;]+[\s]*\(js/require \"([^\"]+)\"\)")
+                                                           (map last)
+                                                           (set))
+                                        js-modules (if commented-modules
+                                                     (vec (remove commented-modules js-modules))
+                                                     js-modules)]
+                                    (let [old-js-modules (get m file-name)]
+                                      (when (not= old-js-modules js-modules)
+                                        (let [new-m (if (seq js-modules)
+                                                      (assoc m file-name js-modules)
+                                                      (dissoc m file-name))]
+                                          (spit path new-m)
+
+                                          (rebuild-env-index (flatten (vals new-m)))))))))
+                              ctx)}])))
+
+(defn build-external-modules
+  []
+  (let [path ".js-modules.edn"
+        m (atom {})]
+    ;; delete path
+    (clojure.java.io/delete-file path)
+
+    (doseq [file (file-seq (java.io.File. "src"))]
+      (when (.isFile file)
+        (let [file-name (-> (.getPath file)
+                            (str/replace (str (System/getProperty "user.dir") "/") ""))
+              content (slurp file)
+              js-modules (some->>
+                          content
+                          (re-seq #"\(js/require \"([^\"]+)\"\)")
+                          (map last)
+                          (vec))
+              commented-modules (some->>
+                                 content
+                                 (re-seq #"[;]+[\s]*\(js/require \"([^\"]+)\"\)")
+                                 (map last)
+                                 (set))
+              js-modules (if commented-modules
+                           (vec (remove commented-modules js-modules))
+                           js-modules)]
+          (if js-modules
+            (swap! m assoc file-name (vec js-modules))))))
+    (spit path @m)
+    (rebuild-env-index (flatten (vals @m)))))
 
 (defn start-figwheel
   "Start figwheel for one or more builds"
@@ -85,10 +157,10 @@
   (enable-source-maps)
   (write-main-js)
   (write-env-dev)
-  (rebuild-env-index)
+  (watch-for-external-modules)
   (ra/start-figwheel!
    {:figwheel-options {}
-    :build-ids  (if (seq build-ids )
+    :build-ids  (if (seq build-ids)
                   build-ids
                   ["main"])
     :all-builds cljs-builds})
@@ -105,7 +177,7 @@
     "--figwheel"
     (start-figwheel)
 
-    "--re-generate"
-    (rebuild-env-index)
+    "--build-external-modules"
+    (build-external-modules)
 
-    (prn "You can run lein figwheel or lein re-generate.")))
+    (prn "You can run lein figwheel or lein build-external-modules.")))

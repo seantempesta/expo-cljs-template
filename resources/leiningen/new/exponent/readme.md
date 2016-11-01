@@ -18,20 +18,19 @@ npm install
 
 ```
 
+### Add new assets or external modules
+1. `require` module:
+``` clj
+    (def cljs-logo (js/require "./assets/images/cljs.png"))
+    (def FontAwesome (js/require "@exponent/vector-icons/FontAwesome"))
+```
+2. Reload simulator or device
+
 ### Make sure you disable live reload from the Developer Menu, also turn off Hot Module Reload.
-Since Figwheel alredy does these.
+Since Figwheel alredy does those.
 
-### Add new assets (images, fonts, videos, etc)
-1. Re-generate modules:
-``` shell
-    lein re-generate
-```
-2. Click `restart` button on Exponent XDE
+### Production build (generates main.js)
 
-### Using external React Native modules
-1. Add modules to `js-modules` in `project.clj`.
-2. Re-generate modules:
 ``` shell
-    lein re-generate
+lein prod-build
 ```
-3. Click `restart` button on Exponent XDE

@@ -10,13 +10,10 @@
             [lein-figwheel "0.5.4-7"]]
   :clean-targets ["target/" "main.js"]
   :aliases {"figwheel" ["run" "-m" "user" "--figwheel"]
-            "re-generate" ["run" "-m" "user" "--re-generate"]
+            "build-external-modules" ["run" "-m" "user" "--build-external-modules"]
             "prod-build" ^{:doc "Recompile code with prod profile."}
             ["do" "clean"
              ["with-profile" "prod" "cljsbuild" "once" "main"]]}
-  :js-modules ["react-native"
-               "react"
-               "exponent"]
   :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.4-7"]
                                   [com.cemerick/piggieback "0.2.1"]]
                    :source-paths ["src" "env/dev"]

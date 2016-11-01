@@ -1,4 +1,4 @@
-(defproject exponent/lein-template "0.1.8"
+(defproject exponent/lein-template "0.1.9"
   :description "Exponentjs template for Clojurescript."
   :url "https://github.com/tiensonqin/exponent-template"
   :license {:name "Eclipse Public License"
