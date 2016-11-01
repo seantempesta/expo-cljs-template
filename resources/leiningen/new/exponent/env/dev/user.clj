@@ -20,7 +20,7 @@
 
 (defn enable-source-maps
   []
-  (prn "Enabled source maps.")
+  (println "Enabled source maps.")
   (let [path "node_modules/react-native/packager/react-packager/src/Server/index.js"]
     (spit path
           (str/replace (slurp path) "/\\.map$/" "/main.map$/"))))
@@ -151,11 +151,18 @@
     (spit path @m)
     (rebuild-env-index (flatten (vals @m)))))
 
+(defn generate-env-index
+  []
+  (when-not (.exists (java.io.File. "env/dev/env/index.cljs"))
+    (let [default-modules ["react-native" "react" "exponent"]]
+      (rebuild-env-index default-modules))))
+
 (defn start-figwheel
   "Start figwheel for one or more builds"
   [& build-ids]
   (enable-source-maps)
   (write-main-js)
+  (generate-env-index)
   (write-env-dev)
   (watch-for-external-modules)
   (ra/start-figwheel!
