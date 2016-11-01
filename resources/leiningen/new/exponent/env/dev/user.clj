@@ -121,12 +121,13 @@
                                           (rebuild-env-index (flatten (vals new-m)))))))))
                               ctx)}])))
 
-(defn build-external-modules
+(defn rebuild-modules
   []
   (let [path ".js-modules.edn"
         m (atom {})]
     ;; delete path
-    (clojure.java.io/delete-file path)
+    (when (.exists (java.io.File. path))
+      (clojure.java.io/delete-file path))
 
     (doseq [file (file-seq (java.io.File. "src"))]
       (when (.isFile file)
@@ -151,18 +152,17 @@
     (spit path @m)
     (rebuild-env-index (flatten (vals @m)))))
 
-(defn generate-env-index
+(defn init-external-modules
   []
-  (when-not (.exists (java.io.File. "env/dev/env/index.cljs"))
-    (let [default-modules ["react-native" "react" "exponent"]]
-      (rebuild-env-index default-modules))))
+  (when-not (.exists (java.io.File. ".js-modules.edn"))
+    (rebuild-modules)))
 
 (defn start-figwheel
   "Start figwheel for one or more builds"
   [& build-ids]
+  (init-external-modules)
   (enable-source-maps)
   (write-main-js)
-  (generate-env-index)
   (write-env-dev)
   (watch-for-external-modules)
   (ra/start-figwheel!
@@ -184,7 +184,7 @@
     "--figwheel"
     (start-figwheel)
 
-    "--build-external-modules"
-    (build-external-modules)
+    "--rebuild-modules"
+    (rebuild-modules)
 
-    (prn "You can run lein figwheel or lein build-external-modules.")))
+    (prn "You can run lein figwheel or lein rebuild-modules.")))
