@@ -34,6 +34,7 @@ lein figwheel
 
 ### Add new assets or external modules
 1. `require` module:
+
 ``` clj
     (def cljs-logo (js/require "./assets/images/cljs.png"))
     (def FontAwesome (js/require "@exponent/vector-icons/FontAwesome"))
