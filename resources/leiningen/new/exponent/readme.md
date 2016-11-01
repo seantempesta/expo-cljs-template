@@ -27,7 +27,7 @@ npm install
 2. Reload simulator or device
 
 ### Make sure you disable live reload from the Developer Menu, also turn off Hot Module Reload.
-Since Figwheel alredy does those.
+Since Figwheel already does those.
 
 ### Production build (generates main.js)
 
