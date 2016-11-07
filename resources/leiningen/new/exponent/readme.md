@@ -30,7 +30,7 @@ npm install
 ### Make sure you disable live reload from the Developer Menu, also turn off Hot Module Reload.
 Since Figwheel already does those.
 
-### Production build (generates main.js)
+### Production build (generates js/externs.js and main.js)
 
 ``` shell
 lein prod-build

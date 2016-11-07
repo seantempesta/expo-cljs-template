@@ -8,8 +8,9 @@ Most of the ideas came from
 
 ## Features
 #### 1. Support reagent and om (defaults to reagent)
-#### 2. Support source maps
-#### 3. Using external modules or assets without restarting the repl.
+#### 2. Auto generated externs for google closure advanced compilation
+#### 3. Support source maps
+#### 4. Using external modules or assets without restarting the repl.
 
 ``` shell
 lein new exponent your-project +reagent
@@ -44,7 +45,7 @@ lein figwheel
 ### Make sure you disable live reload from the Developer Menu, also turn off Hot Module Reload.
 Since Figwheel already does those.
 
-### Production build (generates main.js)
+### Production build (generates js/externs.js and main.js)
 
 ``` shell
 lein prod-build

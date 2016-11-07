@@ -15,7 +15,7 @@
                        ["run" "-m" "externs"]]
             "rebuild-modules" ["run" "-m" "user" "--rebuild-modules"]
             "prod-build" ^{:doc "Recompile code with prod profile."}
-            ["do" "clean"
+            ["externs"
              ["with-profile" "prod" "cljsbuild" "once" "main"]]}
   :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.4-7"]
                                   [com.cemerick/piggieback "0.2.1"]]
