@@ -150,7 +150,7 @@
           (if js-modules
             (swap! m assoc file-name (vec js-modules))))))
     (spit path @m)
-    (rebuild-env-index (flatten (vals @m)))))
+    (rebuild-env-index (flatten (conj (vals @m) "react")))))
 
 (defn init-external-modules
   []

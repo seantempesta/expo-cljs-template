@@ -6,8 +6,8 @@
   "private": true,
   "main": "main.js",
   "dependencies": {
-    "exponent": "~10.0.0",
-    "react": "~15.3.1",
-    "react-native": "github:exponentjs/react-native#sdk-10.1.0"
+    "exponent": "~11.0.0",
+    "react": "~15.3.2",
+    "react-native": "github:exponentjs/react-native#sdk-11.0.1"
   }
 }

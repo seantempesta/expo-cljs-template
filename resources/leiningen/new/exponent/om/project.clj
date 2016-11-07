@@ -4,12 +4,14 @@
   :license {:name "Eclipse Public License"
             :url  "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0-alpha10"]
-                 [org.clojure/clojurescript "1.9.198"]
-                 [org.omcljs/om "1.0.0-alpha46" :exclusions [cljsjs/react cljsjs/react-dom]]]
+                 [org.clojure/clojurescript "1.9.293"]
+                 [org.omcljs/om "1.0.0-alpha47" :exclusions [cljsjs/react cljsjs/react-dom]]]
   :plugins [[lein-cljsbuild "1.1.1"]
             [lein-figwheel "0.5.4-7"]]
   :clean-targets ["target/" "main.js"]
   :aliases {"figwheel" ["run" "-m" "user" "--figwheel"]
+            "externs" ["do" "clean"
+                       ["run" "-m" "externs"]]
             "rebuild-modules" ["run" "-m" "user" "--rebuild-modules"]
             "prod-build" ^{:doc "Recompile code with prod profile."}
             ["do" "clean"
@@ -31,6 +33,8 @@
                                                          :main          "env.main"
                                                          :output-dir    "target"
                                                          :static-fns    true
+                                                         :externs       ["js/externs.js"]
+                                                         :parallel-build     true
                                                          :optimize-constants true
-                                                         :optimizations :simple
+                                                         :optimizations :advanced
                                                          :closure-defines {"goog.DEBUG" false}}}]}}})

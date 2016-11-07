@@ -46,7 +46,12 @@
 
       ["readme.md" (render "readme.md" data)]
       ["env/dev/user.clj" (render "env/dev/user.clj" data)]
+      ["env/dev/externs.clj" (render "env/dev/externs.clj" data)]
       ["env/prod/env/main.cljs" (render "env/prod/env/main.cljs" data)]
-      ["src/cljsjs/react.cljs" (render "src/cljsjs/react.cljs" data)]]
+      ["src/cljsjs/react.cljs" (render "src/cljsjs/react.cljs" data)]
+      ["src/cljsjs/react/dom.cljs" (render "src/cljsjs/react/dom.cljs" data)]
+      ["src/cljsjs/react/dom/server.cljs" (render "src/cljsjs/react/dom/server.cljs" data)]
+      ["src/reagent/dom.cljs" (render "src/reagent/dom.cljs" data)]
+      ["src/reagent/dom/server.cljs" (render "src/reagent/dom/server.cljs" data)]]
      (concat (templates-by-lib lib data))
      (apply ->files data))))
