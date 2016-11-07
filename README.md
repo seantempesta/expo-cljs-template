@@ -8,7 +8,7 @@ Most of the ideas came from
 
 ## Features
 #### 1. Support reagent and om (defaults to reagent)
-#### 2. Auto generated externs for google closure advanced compilation
+#### 2. Auto generated externs for google closure advanced compilation (*experiment*)
 #### 3. Support source maps
 #### 4. Using external modules or assets without restarting the repl.
 
