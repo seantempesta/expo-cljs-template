@@ -55,7 +55,6 @@
              (take-while #(not= % endof))
              (doall))))
     (catch Exception e
-      (println e)
       '())))
 
 (defn file-ast
