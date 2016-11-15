@@ -34,6 +34,18 @@
   []
   (:cljs.analyzer/namespaces @cenv))
 
+(defn get-namespace
+  ([]
+   (get-namespace ana/*cljs-ns*))
+  ([k]
+   (get (get-namespaces) k)))
+
+(defn get-alias
+  [ns]
+  (apply merge
+    ((juxt :requires :require-macros)
+     (get-namespace ns))))
+
 (defn print-ast [ast]
   (pprint  ;; pprint indents output nicely
    (prewalk ;; rewrite each node of the ast
@@ -43,18 +55,32 @@
         x))  ;; non-map nodes are left unchanged
     ast)))
 
+(defn get-ns
+  [s]
+  (some->>
+   (re-find #"\(ns[\s]+([^\s]+)" s)
+   (last)
+   (symbol)))
+
 (defn read-file
   [filename]
   (try
-    (let [reader (string-push-back-reader (slurp filename))
+    (let [form-str (slurp filename)
+          current-ns (get-ns form-str)
+          reader (string-push-back-reader form-str)
           endof (gensym)]
       (binding [r/*read-eval* false
-                r/*data-readers* tags/*cljs-data-readers*]
+                r/*data-readers* tags/*cljs-data-readers*
+                r/*alias-map*    (try
+                                   (get-alias (ns-name current-ns))
+                                   (catch Exception e
+                                     {}))]
         (->> #(r/read reader false endof)
              (repeatedly)
              (take-while #(not= % endof))
              (doall))))
     (catch Exception e
+      (println e)
       '())))
 
 (defn file-ast
