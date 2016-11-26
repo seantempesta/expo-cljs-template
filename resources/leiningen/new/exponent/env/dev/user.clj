@@ -30,10 +30,25 @@
   (-> "'use strict';\n\n// cljsbuild adds a preamble mentioning goog so hack around it\nwindow.goog = {\n  provide() {},\n  require() {},\n};\nrequire('./target/env/index.js');\n"
       ((partial spit "main.js"))))
 
+(defn get-lan-ip
+  []
+  (->> (java.net.NetworkInterface/getNetworkInterfaces)
+       (enumeration-seq)
+       (filter #(and (not (.isLoopback %))
+                     (not (str/starts-with? (.getName %) "docker"))))
+       (map #(.getInterfaceAddresses %))
+       (first)
+       (filter #(instance?
+                 java.net.Inet4Address
+                 (.getAddress %)))
+       (first)
+       (.getAddress)
+       (.getHostAddress)))
+
 (defn write-env-dev
   []
   (let [hostname (.getHostName (java.net.InetAddress/getLocalHost))
-        ip (.getHostAddress (java.net.InetAddress/getLocalHost))]
+        ip (get-lan-ip)]
     (-> "(ns env.dev)\n(def hostname \"%s\")\n(def ip \"%s\")"
         (format
          hostname
