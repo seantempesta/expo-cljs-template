@@ -12,3 +12,4 @@ pom.xml.asc
 .hgignore
 .hg/
 figwheel_server.log
+main.js
