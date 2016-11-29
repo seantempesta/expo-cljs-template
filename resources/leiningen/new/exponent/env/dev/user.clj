@@ -32,18 +32,23 @@
 
 (defn get-lan-ip
   []
-  (->> (java.net.NetworkInterface/getNetworkInterfaces)
-       (enumeration-seq)
-       (filter #(and (not (.isLoopback %))
-                     (not (str/starts-with? (.getName %) "docker"))))
-       (map #(.getInterfaceAddresses %))
-       (first)
-       (filter #(instance?
-                 java.net.Inet4Address
-                 (.getAddress %)))
-       (first)
-       (.getAddress)
-       (.getHostAddress)))
+  (cond
+    (= "Mac OS X" (System/getProperty "os.name"))
+    (.getHostAddress (java.net.InetAddress/getLocalHost))
+
+    :else
+    (->> (java.net.NetworkInterface/getNetworkInterfaces)
+         (enumeration-seq)
+         (filter #(and (not (.isLoopback %))
+                       (not (str/starts-with? (.getName %) "docker"))))
+         (map #(.getInterfaceAddresses %))
+         (first)
+         (filter #(instance?
+                   java.net.Inet4Address
+                   (.getAddress %)))
+         (first)
+         (.getAddress)
+         (.getHostAddress))))
 
 (defn write-env-dev
   []
