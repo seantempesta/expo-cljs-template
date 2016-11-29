@@ -1,20 +1,12 @@
 (ns {{name}}.core
-  (:require [reagent.core :as r :refer [atom]]
-            [re-frame.core :refer [subscribe dispatch dispatch-sync]]
-            [{{name}}.handlers]
-            [{{name}}.subs]))
-
-(set! js/window.React (js/require "react"))
-(def ReactNative (js/require "react-native"))
-
-(def app-registry (.-AppRegistry ReactNative))
-(def text (r/adapt-react-class (.-Text ReactNative)))
-(def view (r/adapt-react-class (.-View ReactNative)))
-(def image (r/adapt-react-class (.-Image ReactNative)))
-(def touchable-highlight (r/adapt-react-class (.-TouchableHighlight ReactNative)))
+    (:require [reagent.core :as r :refer [atom]]
+              [re-frame.core :refer [subscribe dispatch dispatch-sync]]
+              [{{name}}.handlers]
+              [{{name}}.subs]
+              [cljs-exponent.reagent :refer [text view image touchable-highlight] :as rn]))
 
 (defn alert [title]
-      (.alert (.-Alert ReactNative) title))
+  (.alert rn/alert title))
 
 (defn app-root []
   (let [greeting (subscribe [:get-greeting])]
@@ -29,5 +21,5 @@
         [text {:style {:color "white" :text-align "center" :font-weight "bold"}} "press me"]]])))
 
 (defn init []
-      (dispatch-sync [:initialize-db])
-      (.registerComponent app-registry "main" #(r/reactify-component app-root)))
+  (dispatch-sync [:initialize-db])
+  (.registerComponent rn/app-registry "main" #(r/reactify-component app-root)))

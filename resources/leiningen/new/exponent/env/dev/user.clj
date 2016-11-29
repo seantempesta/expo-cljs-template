@@ -73,7 +73,7 @@
                                    (.isFile %)))
                      (map (fn [file] (when-let [path (str file)]
                                       (str "../../" path))))
-                     (concat js-modules)
+                     (concat js-modules ["react" "react-native" "exponent"])
                      (distinct))
         modules-map (zipmap
                      (->> modules
@@ -170,12 +170,11 @@
           (if js-modules
             (swap! m assoc file-name (vec js-modules))))))
     (spit path @m)
-    (rebuild-env-index (flatten (conj (vals @m) "react")))))
+    (rebuild-env-index (flatten (vals @m)))))
 
 (defn init-external-modules
   []
-  (when-not (.exists (java.io.File. ".js-modules.edn"))
-    (rebuild-modules)))
+  (rebuild-modules))
 
 (defn start-figwheel
   "Start figwheel for one or more builds"

@@ -34,7 +34,6 @@
     (->>
      [[".babelrc" (render ".babelrc" data)]
       [".gitignore" (render ".gitignore" data)]
-      [".hgignore" (render ".hgignore" data)]
       [".projectile" (render ".projectile" data)]
       ["LICENSE" (render "LICENSE" data)]
       ["exp.json" (render "exp.json" data)]
