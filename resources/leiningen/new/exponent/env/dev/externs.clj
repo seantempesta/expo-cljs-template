@@ -212,4 +212,7 @@
                      (externs-for-interop))
         result (str vars interop)]
     (spit "js/externs.js" result)
-    (println "Generated externs to js/externs.js")))
+    (println "Generated externs to js/externs.js")
+
+    ;; prevent jvm hang after this task, maybe Clojurescript uses pmap for parallel compilation.
+    (shutdown-agents)))
