@@ -20,7 +20,7 @@
 
 (defn enable-source-maps
   []
-  (println "Enabled source maps.")
+  (println "Source maps enabled.")
   (let [path "node_modules/react-native/packager/react-packager/src/Server/index.js"]
     (spit path
           (str/replace (slurp path) "/\\.map$/" "/main.map$/"))))
@@ -60,12 +60,6 @@
          ip)
         ((partial spit "env/dev/env/dev.cljs")))))
 
-(defn keyword->str [s]
-  (str/replace s
-               #"::(\S)*"
-               (fn [r]
-                 (str \" (str/replace (first r) #"::" "") \"))))
-
 (defn rebuild-env-index
   [js-modules]
   (let [modules (->> (file-seq (io/file "assets"))
@@ -77,13 +71,14 @@
                      (distinct))
         modules-map (zipmap
                      (->> modules
-                          (map #(str "::"
+                          (map #(str "\""
                                      (if (str/starts-with? % "../../assets")
                                        (-> %
                                            (str/replace "../../" "./")
                                            (str/replace "@2x" "")
                                            (str/replace "@3x" ""))
-                                       %))))
+                                       %)
+                                     "\"")))
                      (->> modules
                           (map #(format "(js/require \"%s\")"
                                         (-> %
@@ -93,7 +88,6 @@
       (-> "(ns env.index\n  (:require [env.dev :as dev]))\n\n;; undo main.js goog preamble hack\n(set! js/window.goog js/undefined)\n\n(-> (js/require \"figwheel-bridge\")\n    (.withModules %s)\n    (.start \"main\"))\n"
           (format
            (str "#js " (with-out-str (println modules-map))))
-          (keyword->str)
           ((partial spit "env/dev/env/index.cljs")))
 
       (catch Exception e
