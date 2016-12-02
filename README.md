@@ -6,6 +6,9 @@ Most of the ideas came from
 [re-natal](https://github.com/drapanjanas/re-natal) by [@drapanjanas](https://github.com/drapanjanas) and
 [exp-cljstest](https://github.com/exponentjs/exp-cljstest) by [@nikki93](https://github.com/nikki93).
 
+If you have any questions or suggestions, you can also join Exponent slack #clojurescript,
+https://slack.exponentjs.com/
+
 ## Features
 #### 1. Support reagent and om (defaults to reagent)
 #### 2. Auto generated externs for google closure advanced compilation (*experiment*)
