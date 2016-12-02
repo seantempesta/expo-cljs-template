@@ -17,12 +17,19 @@
     npm install
 ```
 
+#### Signup using exp CLI
+
+``` shell
+    exp signup
+```
+
 #### Start the figwheel server
 ``` shell
     lein figwheel
 ```
 
 #### Start Exponent server (Using `exp`)
+
 ##### Also connect to Android device
 
 ``` shell
