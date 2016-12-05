@@ -13,3 +13,6 @@ pom.xml.asc
 .hg/
 figwheel_server.log
 main.js
+.js-modules.edn
+/env/dev/env/dev.cljs
+/env/dev/env/index.cljs
