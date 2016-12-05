@@ -29,9 +29,9 @@ lein new exponent your-project +om
 ```shell
 lein new exponent your-project
 
+npm install -g yarn
 cd your-project
-
-npm install
+yarn install
 
 lein figwheel
 ```

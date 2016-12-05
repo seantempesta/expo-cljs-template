@@ -6,7 +6,7 @@
     If you don't want to use XDE (not IDE, it stands for Exponent Development Tools), you can use [exp CLI](https://docs.getexponent.com/versions/v11.0.0/guides/exp-cli.html).
 
 ``` shell
-    npm install -g exp
+    yarn install -g exp
 ```
 
 #### Install [Lein](http://leiningen.org/#install)
@@ -14,7 +14,7 @@
 #### Install npm modules
 
 ``` shell
-    npm install
+    yarn install
 ```
 
 #### Signup using exp CLI
