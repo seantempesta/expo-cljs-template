@@ -7,7 +7,7 @@
                  [org.clojure/clojurescript "1.9.293"]
                  [reagent "0.6.0-SNAPSHOT" :exclusions [cljsjs/react cljsjs/react-dom cljsjs/react-dom-server]]
                  [re-frame "0.7.0"]
-                 [cljs-exponent "0.1.3"]
+                 [cljs-exponent "0.1.4"]
                  [react-native-externs "0.0.2-SNAPSHOT"]]
   :plugins [[lein-cljsbuild "1.1.4"]
             [lein-figwheel "0.5.4-7"]]
