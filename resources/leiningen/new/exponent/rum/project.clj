@@ -5,7 +5,7 @@
             :url  "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0-alpha10"]
                  [org.clojure/clojurescript "1.9.293"]
-                 [org.omcljs/om "1.0.0-alpha47" :exclusions [cljsjs/react cljsjs/react-dom]]
+                 [rum "0.10.7" :exclusions [cljsjs/react cljsjs/react-dom sablono]]
                  [cljs-exponent "0.1.3"]
                  [react-native-externs "0.0.2-SNAPSHOT"]]
   :plugins [[lein-cljsbuild "1.1.4"]

@@ -18,7 +18,15 @@
               ["src/{{sanitized}}/db.cljs" (render "reagent/db.cljs" data)]
               ["src/{{sanitized}}/handlers.cljs" (render "reagent/handlers.cljs" data)]
               ["src/{{sanitized}}/subs.cljs" (render "reagent/subs.cljs" data)]
-              ["env/dev/env/main.cljs" (render "reagent/main_dev.cljs" data)]]}
+              ["env/dev/env/main.cljs" (render "reagent/main_dev.cljs" data)]
+              ["src/reagent/dom.cljs" (render "src/reagent/dom.cljs" data)]
+              ["src/reagent/dom/server.cljs" (render "src/reagent/dom/server.cljs" data)]]
+    :rum [["project.clj" (render "rum/project.clj" data)]
+          ["src/{{sanitized}}/core.cljs" (render "rum/core.cljs" data)]
+          ["env/dev/env/main.cljs" (render "rum/main_dev.cljs" data)]
+          ["src/re_natal/support.cljs" (render "rum/support.cljs" data)]
+          ["src/sablono/core.cljs" (render "rum/sablono_core.cljs" data)]
+          ["src/sablono/compiler.clj" (render "rum/sablono_compiler.clj" data)]]}
    lib))
 
 (defn exponent [name & lib]
@@ -50,8 +58,6 @@
       ["env/prod/env/main.cljs" (render "env/prod/env/main.cljs" data)]
       ["src/cljsjs/react.cljs" (render "src/cljsjs/react.cljs" data)]
       ["src/cljsjs/react/dom.cljs" (render "src/cljsjs/react/dom.cljs" data)]
-      ["src/cljsjs/react/dom/server.cljs" (render "src/cljsjs/react/dom/server.cljs" data)]
-      ["src/reagent/dom.cljs" (render "src/reagent/dom.cljs" data)]
-      ["src/reagent/dom/server.cljs" (render "src/reagent/dom/server.cljs" data)]]
+      ["src/cljsjs/react/dom/server.cljs" (render "src/cljsjs/react/dom/server.cljs" data)]]
      (concat (templates-by-lib lib data))
      (apply ->files data))))

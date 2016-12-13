@@ -10,7 +10,7 @@ If you have any questions or suggestions, you can also join Exponent slack #cloj
 https://slack.exponentjs.com/
 
 ## Features
-#### 1. Support reagent and om (defaults to reagent)
+#### 1. Support reagent, om and rum (defaults to reagent)
 #### 2. Auto generated externs for google closure advanced compilation (*experiment*)
 #### 3. Support source maps
 #### 4. Using external modules or assets without restarting the repl.
@@ -18,6 +18,7 @@ https://slack.exponentjs.com/
 ``` shell
 lein new exponent your-project +reagent
 lein new exponent your-project +om
+lein new exponent your-project +rum
 ```
 
 ## Setup
