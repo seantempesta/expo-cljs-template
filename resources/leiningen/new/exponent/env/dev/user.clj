@@ -39,9 +39,15 @@
     :else
     (->> (java.net.NetworkInterface/getNetworkInterfaces)
          (enumeration-seq)
-         (filter #(and (not (.isLoopback %))
-                       (not (str/starts-with? (.getName %) "docker"))))
+         (filter #(not (str/starts-with? (.getName %) "docker")))
          (map #(.getInterfaceAddresses %))
+         (map
+           (fn [ip]
+             (seq (filter #(instance?
+                            java.net.Inet4Address
+                            (.getAddress %))
+                          ip))))
+         (remove nil?)
          (first)
          (filter #(instance?
                    java.net.Inet4Address
