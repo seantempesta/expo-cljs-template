@@ -7,16 +7,15 @@
             [clojure.set :as set]))
 ;; This namespace is loaded automatically by nREPL
 
-;; read project.clj to get build configs
-(def project-config (->> "project.clj"
-                         slurp
-                         read-string
-                         (drop 1)
-                         (apply hash-map)))
-
-(def profiles (:profiles project-config))
-
-(def cljs-builds (get-in profiles [:dev :cljsbuild :builds]))
+(defn get-cljs-builds
+  []
+  (let [project-config (->> "project.clj"
+                            slurp
+                            read-string
+                            (drop 1)
+                            (apply hash-map))
+        profiles (:profiles project-config)]
+    (get-in profiles [:dev :cljsbuild :builds])))
 
 (defn enable-source-maps
   []
@@ -176,6 +175,7 @@
   []
   (rebuild-modules))
 
+;; Lein
 (defn start-figwheel
   "Start figwheel for one or more builds"
   [& build-ids]
@@ -189,7 +189,7 @@
     :build-ids  (if (seq build-ids)
                   build-ids
                   ["main"])
-    :all-builds cljs-builds})
+    :all-builds (get-cljs-builds)})
   (ra/cljs-repl))
 
 (defn stop-figwheel
@@ -207,3 +207,12 @@
     (rebuild-modules)
 
     (prn "You can run lein figwheel or lein rebuild-modules.")))
+
+;; Boot
+(defn prepare
+  []
+  (init-external-modules)
+  (enable-source-maps)
+  (write-main-js)
+  (write-env-dev)
+  (watch-for-external-modules))

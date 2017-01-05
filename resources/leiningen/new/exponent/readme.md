@@ -3,13 +3,13 @@
 ### Usage
 
 #### Install Exponent [XDE and mobile client](https://docs.getexponent.com/versions/v11.0.0/introduction/installation.html)
-    If you don't want to use XDE (not IDE, it stands for Exponent Development Tools), you can use [exp CLI](https://docs.getexponent.com/versions/v11.0.0/guides/exp-cli.html).
+    If you don't want to use XDE (not IDE, it stands for Exponent Development Tools), you can use [exp CLI](https://docs.getexponent.com/versions/v12.0.0/guides/exp-cli.html).
 
 ``` shell
     yarn install -g exp
 ```
 
-#### Install [Lein](http://leiningen.org/#install)
+#### Install [Lein](http://leiningen.org/#install) or [Boot](https://github.com/boot-clj/boot)
 
 #### Install npm modules
 
@@ -23,9 +23,18 @@
     exp signup
 ```
 
-#### Start the figwheel server
+#### Start the figwheel server and cljs repl
+
+##### leiningen users
 ``` shell
     lein figwheel
+```
+
+##### boot users
+``` shell
+    boot dev
+
+    ;; then input (cljs-repl) in the connected clojure repl to connect to boot cljs repl
 ```
 
 #### Start Exponent server (Using `exp`)
@@ -56,6 +65,12 @@ Since Figwheel already does those.
 
 ### Production build (generates js/externs.js and main.js)
 
+#### leiningen users
 ``` shell
 lein prod-build
+```
+
+#### boot users
+``` shell
+boot prod
 ```

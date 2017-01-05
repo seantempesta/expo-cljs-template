@@ -2,7 +2,7 @@
     (:require [om.next :as om :refer-macros [defui]]
               [re-natal.support :as sup]
               [{{name}}.state :as state]
-              [cljs-exponent.om :refer [text view image touchable-highlight] :as rn]))
+              [cljs-exponent.components :refer [text view image touchable-highlight] :as rn]))
 
 (def logo-img (js/require "./assets/images/cljs.png"))
 

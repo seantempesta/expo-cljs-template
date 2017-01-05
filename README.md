@@ -10,10 +10,11 @@ If you have any questions or suggestions, you can also join Exponent slack #cloj
 https://slack.exponentjs.com/
 
 ## Features
-#### 1. Support reagent, om and rum (defaults to reagent)
-#### 2. Auto generated externs for google closure advanced compilation (*experiment*)
-#### 3. Support source maps
-#### 4. Using external modules or assets without restarting the repl.
+#### 1. Support both [leiningen](https://github.com/technomancy/leiningen) and [boot](https://github.com/boot-clj/boot)
+#### 2. Support reagent, om and rum (defaults to reagent)
+#### 3. Auto generated externs for google closure advanced compilation (*experiment*)
+#### 4. Support source maps
+#### 5. Using external modules or assets without restarting the repl.
 
 ``` shell
 lein new exponent your-project +reagent
@@ -22,8 +23,8 @@ lein new exponent your-project +rum
 ```
 
 ## Setup
-#### 1. install [Exponent XDE and mobile client](https://docs.getexponent.com/versions/v10.0.0/introduction/installation.html)
-#### 2. install [Lein](http://leiningen.org/#install)
+#### 1. install [Exponent XDE and mobile client](https://docs.getexponent.com/versions/v12.0.0/introduction/installation.html)
+#### 2. install [Lein](http://leiningen.org/#install) or [Boot](https://github.com/boot-clj/boot)
 
 ## Usage
 
@@ -34,7 +35,13 @@ npm install -g yarn
 cd your-project
 yarn install
 
+;; leiningen users
 lein figwheel
+
+;; boot users
+boot dev
+
+;; then input (cljs-repl) to connect to boot cljs repl
 ```
 
 ### Add new assets or external modules
@@ -51,8 +58,14 @@ Since Figwheel already does those.
 
 ### Production build (generates js/externs.js and main.js)
 
+#### leiningen users
 ``` shell
 lein prod-build
+```
+
+#### boot users
+``` shell
+boot prod
 ```
 
 ## License
