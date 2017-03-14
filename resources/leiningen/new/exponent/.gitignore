@@ -1,5 +1,6 @@
-node_modules/
-.exponent/**/*
+node_modules/**/*
+.expo/*
+npm-debug.*
 /target
 /classes
 /checkouts

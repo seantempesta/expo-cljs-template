@@ -19,5 +19,8 @@
   "packagerOpts": {
     "assetExts": ["ttf","otf"],
     "nonPersistent": ""
+  },
+  "ios": {
+    "supportsTablet": true
   }
 }

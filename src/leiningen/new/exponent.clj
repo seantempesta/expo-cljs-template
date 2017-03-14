@@ -35,7 +35,7 @@
 (defn exponent [name & lib]
   (main/info "Generating fresh Exponent project.")
   (main/info "README.md contains instructions to get you started.")
-  (main/info "If you have any questions, you can ask us on Exponent slack #clojurescript channel. https://slack.exponentjs.com/")
+  (main/info "If you have any questions, you can ask us on Expo slack #clojurescript channel. https://slack.expo.io/")
 
   (let [data {:name name
               :sanitized (name-to-path name)}

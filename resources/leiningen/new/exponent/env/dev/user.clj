@@ -72,7 +72,7 @@
                                    (.isFile %)))
                      (map (fn [file] (when-let [path (str file)]
                                       (str "../../" path))))
-                     (concat js-modules ["react" "react-native" "exponent"])
+                     (concat js-modules ["react" "react-native" "expo"])
                      (distinct))
         modules-map (zipmap
                      (->> modules

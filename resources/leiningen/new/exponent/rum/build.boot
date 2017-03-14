@@ -10,7 +10,7 @@
                  [org.clojure/clojurescript      "1.9.293"]
                  [rum "0.10.7" :exclusions [cljsjs/react cljsjs/react-dom sablono]]
                  [re-frame "0.7.0"]
-                 [cljs-exponent "0.1.4"]])
+                 [cljs-exponent "0.1.5"]])
 
 (require
  '[boot-figwheel :refer [figwheel cljs-repl]]

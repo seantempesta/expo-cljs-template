@@ -9,7 +9,7 @@
                  [org.clojure/clojure "1.9.0-alpha10"]
                  [org.clojure/clojurescript      "1.9.293"]
                  [org.omcljs/om "1.0.0-alpha47" :exclusions [cljsjs/react cljsjs/react-dom]]
-                 [cljs-exponent "0.1.4"]])
+                 [cljs-exponent "0.1.5"]])
 
 (require
  '[boot-figwheel :refer [figwheel cljs-repl]]
