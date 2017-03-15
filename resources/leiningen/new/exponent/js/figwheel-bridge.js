@@ -10,7 +10,7 @@ var debugEnabled = false;
 var config = {
     basePath: "target/",
     googBasePath: 'goog/',
-    serverPort: 8081
+    serverPort: 19001
 };
 
 var React = require('react');
@@ -57,7 +57,11 @@ var figwheelApp = function (platform, devHost) {
                           this.props.exp.manifest.bundleUrl;
                 var hostPort = url.split('/')[2].split(':');
                 devHost = hostPort[0];
-                config.serverPort = hostPort[1];
+
+                if (hostPort[1]) {
+                  config.serverPort = hostPort[1];
+                }
+
                 loadApp(platform, devHost, function (appRoot) {
                     app.setState({root: appRoot, loaded: true})
                 });
