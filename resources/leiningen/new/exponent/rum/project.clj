@@ -6,7 +6,7 @@
   :dependencies [[org.clojure/clojure "1.9.0-alpha10"]
                  [org.clojure/clojurescript "1.9.293"]
                  [rum "0.10.7" :exclusions [cljsjs/react cljsjs/react-dom sablono]]
-                 [cljs-exponent "0.1.5"]
+                 [cljs-exponent "0.1.6"]
                  [react-native-externs "0.0.2-SNAPSHOT"]]
   :plugins [[lein-cljsbuild "1.1.4"]
             [lein-figwheel "0.5.4-7"]]
