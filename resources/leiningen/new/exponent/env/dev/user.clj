@@ -38,7 +38,8 @@
     :else
     (->> (java.net.NetworkInterface/getNetworkInterfaces)
          (enumeration-seq)
-         (filter #(not (str/starts-with? (.getName %) "docker")))
+         (filter #(not (or (str/starts-with? (.getName %) "docker")
+                           (str/starts-with? (.getName %) "br-"))))
          (map #(.getInterfaceAddresses %))
          (map
            (fn [ip]
