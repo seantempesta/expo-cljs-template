@@ -71,7 +71,7 @@
   (let [modules (->> (file-seq (io/file "assets"))
                      (filter #(and (not (re-find #"DS_Store" (str %)))
                                    (.isFile %)))
-                     (map (fn [file] (when-let [path (str file)]
+                     (map (fn [file] (when-let [path (str/replace (str file) "\\" "/")]
                                       (str "../../" path))))
                      (concat js-modules ["react" "react-native" "expo"])
                      (distinct))
