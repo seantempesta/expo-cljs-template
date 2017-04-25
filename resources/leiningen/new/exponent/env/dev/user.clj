@@ -32,7 +32,7 @@
 (defn get-lan-ip
   []
   (cond
-    (= "Mac OS X" (System/getProperty "os.name"))
+    (some #{(System/getProperty "os.name")} ["Mac OS X" "Windows 10"])
     (.getHostAddress (java.net.InetAddress/getLocalHost))
 
     :else
@@ -71,8 +71,8 @@
   (let [modules (->> (file-seq (io/file "assets"))
                      (filter #(and (not (re-find #"DS_Store" (str %)))
                                    (.isFile %)))
-                     (map (fn [file] (when-let [path (str file)]
-                                      (str "../../" path))))
+                     (map (fn [file] (when-let [unix-path (->> file .toPath .iterator iterator-seq (str/join "/"))]
+                                      (str "../../" unix-path))))
                      (concat js-modules ["react" "react-native" "expo"])
                      (distinct))
         modules-map (zipmap
