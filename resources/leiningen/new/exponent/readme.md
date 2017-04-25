@@ -2,11 +2,11 @@
 
 ### Usage
 
-#### Install Expo [XDE and mobile client](https://docs.expo.io/versions/v14.0.0/introduction/installation.html)
-    If you don't want to use XDE (not IDE, it stands for Expo Development Tools), you can use [exp CLI](https://docs.expo.io/versions/v14.0.0/guides/exp-cli.html).
+#### Install Expo [XDE and mobile client](https://docs.expo.io/versions/v15.0.0/introduction/installation.html)
+    If you don't want to use XDE (not IDE, it stands for Expo Development Tools), you can use [exp CLI](https://docs.expo.io/versions/v15.0.0/guides/exp-cli.html).
 
 ``` shell
-    yarn install -g exp
+    yarn global add exp
 ```
 
 #### Install [Lein](http://leiningen.org/#install) or [Boot](https://github.com/boot-clj/boot)
