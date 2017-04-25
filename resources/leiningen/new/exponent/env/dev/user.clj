@@ -81,6 +81,7 @@
                                      (if (str/starts-with? % "../../assets")
                                        (-> %
                                            (str/replace "../../" "./")
+                                           (str/replace "\\" "/")
                                            (str/replace "@2x" "")
                                            (str/replace "@3x" ""))
                                        %)
@@ -88,6 +89,7 @@
                      (->> modules
                           (map #(format "(js/require \"%s\")"
                                         (-> %
+                                            (str/replace "\\" "/")
                                             (str/replace "@2x" "")
                                             (str/replace "@3x" ""))))))]
     (try
