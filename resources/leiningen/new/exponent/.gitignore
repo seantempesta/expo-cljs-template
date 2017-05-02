@@ -17,4 +17,3 @@ main.js
 .js-modules.edn
 /env/dev/env/dev.cljs
 /env/dev/env/index.cljs
-yarn.lock
