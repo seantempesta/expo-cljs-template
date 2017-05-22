@@ -1,3 +1,10 @@
+> #Notice
+> Tienson Qin (@tiensonqin) recently transferred ownership and maintenance of `expo-cljs-template` to me.  Please bear with me while I get my footing.  :)
+>
+> Major Upgrades in progress to bring this project up to date with the latest expo version 17.0.0.  The `reagent` + `lein` versions should work, but I'm slowly working on updating the other libraries and boot.
+>
+> Pull requests welcome!
+
 # Expo
 
 [Expo](https://expo.io/) template for [Clojurescript](http://clojurescript.org/).
