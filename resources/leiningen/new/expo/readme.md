@@ -56,7 +56,7 @@
 
 ``` clj
     (def cljs-logo (js/require "./assets/images/cljs.png"))
-    (def FontAwesome (js/require "@exponent/vector-icons/FontAwesome"))
+    (def FontAwesome (js/require "@expo/vector-icons/FontAwesome"))
 ```
 2. Reload simulator or device
 

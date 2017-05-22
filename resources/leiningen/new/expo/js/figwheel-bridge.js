@@ -229,7 +229,7 @@ function loadApp(platform, devHost, onLoadCb) {
                 // seriously React packager? why.
                 var googreq = goog.require;
 
-                googreq('figwheel.connect');
+                googreq('figwheel.connect.build_main');
             });
         });
     }

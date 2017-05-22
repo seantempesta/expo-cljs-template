@@ -6,8 +6,8 @@
   "private": true,
   "main": "main.js",
   "dependencies": {
-    "expo": "^16.0.0",
-      "react": "16.0.0-alpha.6",
-    "react-native": "github:exponentjs/react-native#sdk-16.0.0"
+    "expo": "^17.0.0",
+    "react": "16.0.0-alpha.6",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-17.0.0.tar.gz"
   }
 }

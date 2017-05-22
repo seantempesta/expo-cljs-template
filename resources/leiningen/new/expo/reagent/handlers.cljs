@@ -1,7 +1,7 @@
 (ns {{name}}.handlers
   (:require
     [re-frame.core :refer [reg-event-db ->interceptor]]
-    [clojure.spec :as s]
+    [clojure.spec.alpha :as s]
     [{{name}}.db :as db :refer [app-db]]))
 
 ;; -- Interceptors ----------------------------------------------------------

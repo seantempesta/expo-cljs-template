@@ -1,12 +1,12 @@
-# Exponent
+# Expo
 
-[Exponentjs](https://getexponent.com/) template for [Clojurescript](http://clojurescript.org/).
+[Expo](https://expo.io/) template for [Clojurescript](http://clojurescript.org/).
 
 Most of the ideas came from
 [re-natal](https://github.com/drapanjanas/re-natal) by [@drapanjanas](https://github.com/drapanjanas) and
 [exp-cljstest](https://github.com/exponentjs/exp-cljstest) by [@nikki93](https://github.com/nikki93).
 
-If you have any questions or suggestions, you can also join Exponent slack #clojurescript,
+If you have any questions or suggestions, you can also join Expo slack #clojurescript,
 https://slack.exponentjs.com/
 
 ## Features
@@ -17,19 +17,19 @@ https://slack.exponentjs.com/
 #### 5. Using external modules or assets without restarting the repl.
 
 ``` shell
-lein new exponent your-project +reagent
-lein new exponent your-project +om
-lein new exponent your-project +rum
+lein new expo your-project +reagent
+lein new expo your-project +om
+lein new expo your-project +rum
 ```
 
 ## Setup
-#### 1. install [Exponent XDE and mobile client](https://docs.getexponent.com/versions/v12.0.0/introduction/installation.html)
+#### 1. install [Expo XDE and mobile client](https://docs.expo.io/versions/v17.0.0/introduction/installation.html)
 #### 2. install [Lein](http://leiningen.org/#install) or [Boot](https://github.com/boot-clj/boot)
 
 ## Usage
 
 ```shell
-lein new exponent your-project
+lein new expo your-project
 
 npm install -g yarn
 cd your-project
@@ -49,7 +49,7 @@ boot dev
 
 ``` clj
     (def cljs-logo (js/require "./assets/images/cljs.png"))
-    (def FontAwesome (js/require "@exponent/vector-icons/FontAwesome"))
+    (def FontAwesome (js/require "@expo/vector-icons/FontAwesome"))
 ```
 2. Reload simulator or device
 

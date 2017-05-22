@@ -1,6 +1,6 @@
-(defproject exponent/lein-template "0.5.0"
+(defproject expo/lein-template "0.17.0"
   :description "Expo template for Clojurescript."
-  :url "https://github.com/tiensonqin/exponent-cljs-template"
+  :url "https://github.com/seantempesta/expo-cljs-template"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :eval-in-leiningen true)

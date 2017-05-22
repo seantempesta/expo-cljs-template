@@ -1,9 +1,9 @@
-(ns leiningen.new.exponent
+(ns leiningen.new.expo
   (:require [leiningen.new.templates :refer [renderer raw-resourcer name-to-path ->files]]
             [leiningen.core.main :as main]))
 
-(def render (renderer "exponent"))
-(def raw (raw-resourcer "exponent"))
+(def render (renderer "expo"))
+(def raw (raw-resourcer "expo"))
 
 (defn templates-by-lib
   [lib data]
@@ -32,8 +32,8 @@
           ["src/sablono/compiler.clj" (render "rum/sablono_compiler.clj" data)]]}
    lib))
 
-(defn exponent [name & lib]
-  (main/info "Generating fresh Exponent project.")
+(defn expo [name & lib]
+  (main/info "Generating fresh Expo project.")
   (main/info "README.md contains instructions to get you started.")
   (main/info "If you have any questions, you can ask us on Expo slack #clojurescript channel. https://slack.expo.io/")
 
@@ -50,6 +50,8 @@
       ["LICENSE" (render "LICENSE" data)]
       ["exp.json" (render "exp.json" data)]
       ["js/figwheel-bridge.js" (render "js/figwheel-bridge.js" data)]
+      ["assets/icons/app.png" (raw "assets/icons/app.png")]
+      ["assets/icons/loading.png" (raw "assets/icons/loading.png")]
       ["assets/images/cljs.png" (raw "assets/images/cljs.png")]
       ["assets/images/cljs@2x.png" (raw "assets/images/cljs@2x.png")]
       ["assets/images/cljs@3x.png" (raw "assets/images/cljs@3x.png")]

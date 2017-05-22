@@ -6,11 +6,11 @@
                  [figwheel-sidecar "0.5.4-7" :scope "test"]
                  [react-native-externs "0.0.2-SNAPSHOT" :scope "test"]
 
-                 [org.clojure/clojure "1.9.0-alpha10"]
-                 [org.clojure/clojurescript      "1.9.293"]
-                 [reagent "0.6.0-SNAPSHOT" :exclusions [cljsjs/react cljsjs/react-dom cljsjs/react-dom-server]]
-                 [re-frame "0.9.1"]
-                 [cljs-exponent "0.1.6"]])
+                 [org.clojure/clojure "1.9.0-alpha16"]
+                 [org.clojure/clojurescript "1.9.542"]
+                 [org.clojure/core.async "0.3.442"]
+                 [reagent "0.6.1" :exclusions [cljsjs/react cljsjs/react-dom cljsjs/react-dom-server]]
+                 [re-frame "0.9.3"]])
 
 (require
  '[boot-figwheel :refer [figwheel cljs-repl]]
