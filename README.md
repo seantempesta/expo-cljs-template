@@ -1,7 +1,7 @@
 # Notice
 > Tienson Qin (@tiensonqin) recently transferred ownership and maintenance of `expo-cljs-template` to me.  Please bear with me while I get my footing.  :)
 >
-> Major Upgrades in progress to bring this project up to date with the latest expo version 17.0.0.  The `reagent` + `lein` versions should work, but I'm slowly working on updating the other libraries and boot.
+> Status: Boot isn't working.  Om and Reagent templates should be working.
 >
 > Pull requests welcome!
 
@@ -17,8 +17,8 @@ If you have any questions or suggestions, you can also join Expo slack #clojures
 https://slack.exponentjs.com/
 
 ## Features
-#### 1. Support both [leiningen](https://github.com/technomancy/leiningen) and [boot](https://github.com/boot-clj/boot)
-#### 2. Support reagent, om and rum (defaults to reagent)
+#### 1. Supports [leiningen](https://github.com/technomancy/leiningen)
+#### 2. Support reagent and om (defaults to reagent)
 #### 3. Auto generated externs for google closure advanced compilation (*experiment*)
 #### 4. Support source maps
 #### 5. Using external modules or assets without restarting the repl.
@@ -26,7 +26,6 @@ https://slack.exponentjs.com/
 ``` shell
 lein new expo your-project +reagent
 lein new expo your-project +om
-lein new expo your-project +rum
 ```
 
 ## Setup
