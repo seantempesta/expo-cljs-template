@@ -1,9 +1,9 @@
 # Notice
-> Tienson Qin (@tiensonqin) recently transferred ownership and maintenance of `expo-cljs-template` to me.  Please bear with me while I get my footing.  :)
+> Please ensure you are using the latest version of this template `0.19.0`
 >
-> Status: Boot isn't working.  Om and Reagent templates should be working.
+> Status: `Boot` isn't working.  Om and Reagent templates should be working.
 >
-> Pull requests welcome!
+> Pull requests welcome!  I don't know enough about `Boot` or `Rum` (or have enough time to learn) to support them! 
 
 # Expo
 
@@ -43,9 +43,6 @@ yarn install
 
 ;; leiningen users
 lein figwheel
-
-;; boot users
-boot dev
 
 ;; then input (cljs-repl) to connect to boot cljs repl
 ```
