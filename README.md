@@ -23,32 +23,37 @@ https://slack.exponentjs.com/
 #### 4. Support source maps
 #### 5. Using external modules or assets without restarting the repl.
 
-``` shell
+## Dependencies (do this first!)
+#### 1. install [Expo XDE and mobile client](https://docs.expo.io/versions/v19.0.0/introduction/installation.html)
+#### 2. install [Lein](http://leiningen.org/#install)
+#### 3. install [Yarn](https://yarnpkg.com/lang/en/docs/install/)
+
+
+## Usage
+#### 1. create your project
+
+```shell
 lein new expo your-project +reagent
 lein new expo your-project +om
 ```
-
-## Setup
-#### 1. install [Expo XDE and mobile client](https://docs.expo.io/versions/v17.0.0/introduction/installation.html)
-#### 2. install [Lein](http://leiningen.org/#install) or [Boot](https://github.com/boot-clj/boot)
-
-## Usage
+#### 2. change into your project's new directory
 
 ```shell
-lein new expo your-project
-
-npm install -g yarn
 cd your-project
-yarn install
-
-;; leiningen users
-lein figwheel
-
-;; then input (cljs-repl) to connect to boot cljs repl
 ```
 
-### Add new assets or external modules
-1. `require` module:
+#### 2. install npm dependencies
+```shell
+yarn install
+```
+
+#### 3. run figwheel for a development REPL
+```shell
+lein figwheel
+```
+
+### To add new assets or external modules
+1. Just `js/require` it somewhere in your code:
 
 ``` clj
     (def cljs-logo (js/require "./assets/images/cljs.png"))
@@ -56,20 +61,19 @@ lein figwheel
 ```
 2. Reload simulator or device
 
-### Make sure you disable live reload from the Developer Menu, also turn off Hot Module Reload.
-Since Figwheel already does those.
+### To create a Production build (use this when you "Publish")
+(generates js/externs.js and main.js)
 
-### Production build (generates js/externs.js and main.js)
-
-#### leiningen users
 ``` shell
 lein prod-build
 ```
 
-#### boot users
-``` shell
-boot prod
-```
+
+### Tips!
+
+* Make sure you disable "Live Reload" and "Hot Reload" from the [Developer Menu](https://facebook.github.io/react-native/docs/debugging.html).
+(Figwheel does this better!)
+
 
 ## License
 
