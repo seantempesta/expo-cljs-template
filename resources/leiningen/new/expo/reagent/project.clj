@@ -4,13 +4,12 @@
   :license {:name "Eclipse Public License"
             :url  "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0-alpha16"]
-                 [org.clojure/clojurescript "1.9.542"]
-                 [org.clojure/core.async "0.3.442"]
-                 [reagent "0.6.1" :exclusions [cljsjs/react cljsjs/react-dom cljsjs/react-dom-server]]
+                 [org.clojure/clojurescript "1.9.854"]
+                 [reagent "0.7.0" :exclusions [cljsjs/react cljsjs/react-dom cljsjs/react-dom-server cljsjs/create-react-class]]
                  [re-frame "0.9.3"]
-                 [react-native-externs "0.0.2-SNAPSHOT"]]
+                 [react-native-externs "0.1.0"]]
   :plugins [[lein-cljsbuild "1.1.4"]
-            [lein-figwheel "0.5.10"]]
+            [lein-figwheel "0.5.11"]]
   :clean-targets ["target/" "main.js"]
   :aliases {"figwheel" ["run" "-m" "user" "--figwheel"]
             "externs" ["do" "clean"

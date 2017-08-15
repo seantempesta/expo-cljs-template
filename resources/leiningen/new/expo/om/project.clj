@@ -4,9 +4,9 @@
   :license {:name "Eclipse Public License"
             :url  "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0-alpha16"]
-                 [org.clojure/clojurescript "1.9.671"]
+                 [org.clojure/clojurescript "1.9.854"]
                  [org.omcljs/om "1.0.0-beta1" :exclusions [cljsjs/react cljsjs/react-dom]]
-                 [react-native-externs "0.0.2-SNAPSHOT"]]
+                 [react-native-externs "0.1.0"]]
   :plugins [[lein-cljsbuild "1.1.4"]
             [lein-figwheel "0.5.11"]]
   :clean-targets ["target/" "main.js"]

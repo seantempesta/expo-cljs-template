@@ -20,7 +20,7 @@
 (defn enable-source-maps
   []
   (println "Source maps enabled.")
-  (let [path "node_modules/react-native/packager/src/Server/index.js"]
+  (let [path "node_modules/metro-bundler/build/Server/index.js"]
     (spit path
           (str/replace (slurp path) "/\\.map$/" "/main.map$/"))))
 
@@ -73,7 +73,7 @@
                                    (.isFile %)))
                      (map (fn [file] (when-let [unix-path (->> file .toPath .iterator iterator-seq (str/join "/"))]
                                       (str "../../" unix-path))))
-                     (concat js-modules ["react" "react-native" "expo"])
+                     (concat js-modules ["react" "react-native" "expo" "create-react-class"])
                      (distinct))
         modules-map (zipmap
                      (->> modules

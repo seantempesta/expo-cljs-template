@@ -1,4 +1,4 @@
-(defproject expo/lein-template "0.17.1"
+(defproject expo/lein-template "0.19.0"
   :description "Expo template for Clojurescript."
   :url "https://github.com/seantempesta/expo-cljs-template"
   :license {:name "Eclipse Public License"
