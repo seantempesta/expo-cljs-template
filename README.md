@@ -42,12 +42,12 @@ lein new expo your-project +om
 cd your-project
 ```
 
-#### 2. install npm dependencies
+#### 3. install npm dependencies
 ```shell
 yarn install
 ```
 
-#### 3. run figwheel for a development REPL
+#### 4. run figwheel for a development REPL
 ```shell
 lein figwheel
 ```
@@ -77,7 +77,7 @@ lein prod-build
 
 ## License
 
-Copyright © 2016 Tienson Qin
+Copyright © 2017 Sean Tempesta
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
