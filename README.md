@@ -1,3 +1,5 @@
+[![Clojars Project](https://img.shields.io/clojars/v/expo/lein-template.svg)](https://clojars.org/expo/lein-template)
+
 # Notice
 > Please ensure you are using the latest version of this template `0.19.0`
 >
