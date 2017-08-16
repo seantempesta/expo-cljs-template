@@ -13,7 +13,7 @@ Pull requests welcome!  I don't know enough about `Boot` or `Rum` (or have enoug
 
 # Expo
 
-Create React Native apps in [Clojurescript](http://clojurescript.org/) with [Expo](https://expo.io/).  Impress your friends and build truly native apps across iOS and Android in a sane language!
+Create [React Native](https://facebook.github.io/react-native/) apps in [Clojurescript](http://clojurescript.org/) with [Expo](https://expo.io/).  Impress your friends and build truly native apps across iOS and Android in a sane language!
 
 ## Features
 * Reusable codebase for iOS and Android
