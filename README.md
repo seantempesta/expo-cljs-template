@@ -2,10 +2,12 @@
 
 # Status
 ```diff
-+ `Om-next` *working* 
-+ `Reagent` *working*
-- `Boot` *broken*
-- `Rum` *broken*
++ [expo "19.0.0"]
++ [org.omcljs/om "1.0.0-beta1"]
++ [reagent "0.7.0"]
++ [re-frame "0.9.3"]      
+- [boot *broken*]
+- [rum  *broken*]
 ```
 Pull requests welcome!  I don't know enough about `Boot` or `Rum` (or have enough time to learn) to support them! 
 
