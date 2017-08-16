@@ -1,11 +1,13 @@
 [![Clojars Project](https://img.shields.io/clojars/v/expo/lein-template.svg)](https://clojars.org/expo/lein-template)
 
-# Notice
-> Please ensure you are using the latest version of this template `0.19.0`
->
-> Status: `Boot` isn't working.  Om and Reagent templates should be working.
->
-> Pull requests welcome!  I don't know enough about `Boot` or `Rum` (or have enough time to learn) to support them! 
+# Status
+```diff
++ `Om-next` *working* 
++ `Reagent` *working*
+- `Boot` *broken*
+- `Rum` *broken*
+```
+Pull requests welcome!  I don't know enough about `Boot` or `Rum` (or have enough time to learn) to support them! 
 
 # Expo
 
