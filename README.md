@@ -1,6 +1,10 @@
 [![Clojars Project](https://img.shields.io/clojars/v/expo/lein-template.svg)](https://clojars.org/expo/lein-template)
 
-# Status
+# Expo
+
+Create [React Native](https://facebook.github.io/react-native/) apps in [Clojurescript](http://clojurescript.org/) with [Expo](https://expo.io/).  Impress your friends and build truly native apps across iOS and Android in a sane language!
+
+## Status
 ```diff
 + [expo "19.0.0"]
 + [org.omcljs/om "1.0.0-beta1"]
@@ -11,9 +15,6 @@
 ```
 Pull requests welcome!  I don't know enough about `Boot` or `Rum` (or have enough time to learn) to support them! 
 
-# Expo
-
-Create [React Native](https://facebook.github.io/react-native/) apps in [Clojurescript](http://clojurescript.org/) with [Expo](https://expo.io/).  Impress your friends and build truly native apps across iOS and Android in a sane language!
 
 ## Features
 * Reusable codebase for iOS and Android
