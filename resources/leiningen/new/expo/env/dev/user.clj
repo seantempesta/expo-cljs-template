@@ -29,32 +29,37 @@
   (-> "'use strict';\n\n// cljsbuild adds a preamble mentioning goog so hack around it\nwindow.goog = {\n  provide() {},\n  require() {},\n};\nrequire('./target/env/index.js');\n"
       ((partial spit "main.js"))))
 
-(defn get-lan-ip
-  []
-  (cond
-    (some #{(System/getProperty "os.name")} ["Mac OS X" "Windows 10"])
-    (.getHostAddress (java.net.InetAddress/getLocalHost))
 
-    :else
-    (->> (java.net.NetworkInterface/getNetworkInterfaces)
-         (enumeration-seq)
-         (filter #(not (or (str/starts-with? (.getName %) "docker")
-                           (str/starts-with? (.getName %) "br-"))))
-         (map #(.getInterfaceAddresses %))
-         (map
+(defn get-lan-ip
+  "If .lan-ip file exists, it fetches the ip from the file.
+   Othewise it attempts to get the ip from the system."
+  []
+  (if-let [ip (try (slurp ".lan-ip") (catch Exception e nil))]
+   (clojure.string/trim-newline ip)
+   (cond
+     (some #{(System/getProperty "os.name")} ["Mac OS X" "Windows 10"])
+     (.getHostAddress (java.net.InetAddress/getLocalHost))
+
+     :else
+     (->> (java.net.NetworkInterface/getNetworkInterfaces)
+          (enumeration-seq)
+          (filter #(not (or (str/starts-with? (.getName %) "docker")
+                            (str/starts-with? (.getName %) "br-"))))
+          (map #(.getInterfaceAddresses %))
+          (map
            (fn [ip]
              (seq (filter #(instance?
                             java.net.Inet4Address
                             (.getAddress %))
                           ip))))
-         (remove nil?)
-         (first)
-         (filter #(instance?
-                   java.net.Inet4Address
-                   (.getAddress %)))
-         (first)
-         (.getAddress)
-         (.getHostAddress))))
+          (remove nil?)
+          (first)
+          (filter #(instance?
+                    java.net.Inet4Address
+                    (.getAddress %)))
+          (first)
+          (.getAddress)
+          (.getHostAddress)))))
 
 (defn write-env-dev
   []
