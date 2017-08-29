@@ -6,7 +6,7 @@ Create [React Native](https://facebook.github.io/react-native/) apps in [Clojure
 
 ## Status
 ```diff
-+ [expo "19.0.0"]
++ [expo "20.0"]
 + [org.omcljs/om "1.0.0-beta1"]
 + [reagent "0.7.0"]
 + [re-frame "0.9.3"]      
@@ -30,7 +30,7 @@ Pull requests welcome!  I don't know enough about `Boot` or `Rum` (or have enoug
 * [Clojure Slack](http://clojurians.net) #cljsrn
 
 ## Dependencies (install these first)
-* [Expo XDE](https://docs.expo.io/versions/v19.0.0/introduction/installation.html)
+* [Expo XDE](https://docs.expo.io/versions/latest/introduction/installation.html)
 * [Lein](http://leiningen.org/#install)
 * [Yarn](https://yarnpkg.com/lang/en/docs/install/)
 
