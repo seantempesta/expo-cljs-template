@@ -10,13 +10,13 @@
   :plugins [[lein-cljsbuild "1.1.4"]
             [lein-figwheel "0.5.11"]]
   :clean-targets ["target/" "main.js"]
-  :aliases {"figwheel" ["run" "-m" "user" "--figwheel"]
-            "externs" ["do" "clean"
-                       ["run" "-m" "externs"]]
+  :aliases {"figwheel"        ["run" "-m" "user" "--figwheel"]
+            ; TODO: Remove custom extern inference as it's unreliable
+            ;"externs"         ["do" "clean"
+            ;                   ["run" "-m" "externs"]]
             "rebuild-modules" ["run" "-m" "user" "--rebuild-modules"]
-            "prod-build" ^{:doc "Recompile code with prod profile."}
-            ["externs"
-             ["with-profile" "prod" "cljsbuild" "once" "main"]]}
+            "prod-build"      ^{:doc "Recompile code with prod profile."}
+                              ["with-profile" "prod" "cljsbuild" "once" "main"]}
   :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.11"]
                                   [com.cemerick/piggieback "0.2.1"]]
                    :source-paths ["src" "env/dev"]
@@ -35,6 +35,7 @@
                                                          :output-dir    "target"
                                                          :static-fns    true
                                                          :externs       ["js/externs.js"]
+                                                         :infer-externs      true
                                                          :parallel-build     true
                                                          :optimize-constants true
                                                          :optimizations :advanced

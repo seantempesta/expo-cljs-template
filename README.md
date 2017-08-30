@@ -82,6 +82,12 @@ lein prod-build
 ```
 #### 3. Open XDE and [Publish](https://docs.expo.io/versions/latest/guides/publishing.html) 
 
+## Externs
+Production builds use `advanced` closure compilation which sometimes cause problems with javascript interop ([details](https://github.com/cljsjs/packages/wiki/Creating-Externs)).  In the past we ran a custom script to try and prepare a proper externs file, but I've found it to be [very](https://github.com/seantempesta/expo-cljs-template/issues/12) [problematic](https://github.com/seantempesta/expo-cljs-template/issues/16) and am now recommending the following:
+* Try out the [:externs-inference](https://clojurescript.org/guides/externs#externs-inference) setting in the clojurescript compiler.  It should be enabled by default in newer versions of this template.
+* Use an interop package like [cljs-oops](https://github.com/binaryage/cljs-oops) for all `js` interop as dot references can get mangled `(.-property js-object)`
+* Add your externs manually to `./js/externs.js`
+
 ## Upgrading
 As this is only an initial template, you'll want to upgrade to newer versions of `expo`.
 Honestly, it's usually as easy as reading the latest [blog post](https://blog.expo.io/expo-sdk-v20-0-0-is-now-available-79f84232a9d1) for the new version
