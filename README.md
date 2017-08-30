@@ -22,7 +22,6 @@ Pull requests welcome!  I don't know enough about `Boot` or `Rum` (or have enoug
 * Easily test and publish your apps without installing XCode or Android Studio
 * Source map support when debugging Clojurescript
 * Supports React wrappers [Reagent](https://github.com/reagent-project/reagent) and [Om.Next](https://github.com/omcljs/om)
-* Auto generated externs for google closure advanced compilation (*experimental*)
  
 ## Need help?
 * [Expo Documentation](https://docs.expo.io/versions/latest/index.html) 
@@ -86,7 +85,7 @@ lein prod-build
 Production builds use `advanced` closure compilation which sometimes cause problems with javascript interop ([details](https://github.com/cljsjs/packages/wiki/Creating-Externs)).  In the past we ran a custom script to try and prepare a proper externs file, but I've found it to be [very](https://github.com/seantempesta/expo-cljs-template/issues/12) [problematic](https://github.com/seantempesta/expo-cljs-template/issues/16) and am now recommending the following:
 * Try out the [:externs-inference](https://clojurescript.org/guides/externs#externs-inference) setting in the clojurescript compiler.  It should be enabled by default in newer versions of this template.
 * Use an interop package like [cljs-oops](https://github.com/binaryage/cljs-oops) for all `js` interop as dot references can get mangled `(.-property js-object)`
-* Add your externs manually to `./js/externs.js`
+* Add your externs manually to 
 
 ## Upgrading
 As this is only an initial template, you'll want to upgrade to newer versions of `expo`.
