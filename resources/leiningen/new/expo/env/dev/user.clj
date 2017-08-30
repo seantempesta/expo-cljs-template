@@ -29,7 +29,14 @@
   (-> "'use strict';\n\n// cljsbuild adds a preamble mentioning goog so hack around it\nwindow.goog = {\n  provide() {},\n  require() {},\n};\nrequire('./target/env/index.js');\n"
       ((partial spit "main.js"))))
 
+(defn get-expo-host []
+  (let [settings (-> (slurp ".expo/settings.json") json/read-str)
+        host (get settings "hostType")]
+    host))
+
 (defn get-lan-ip
+  "TODO: Either fix this or remove it.  It's unreliable.  I'm changing strategy and relying on the host that expo saves
+  in the .expo/settings.json file"
   []
   (cond
     (some #{(System/getProperty "os.name")} ["Mac OS X" "Windows 10"])
@@ -59,7 +66,7 @@
 (defn write-env-dev
   []
   (let [hostname (.getHostName (java.net.InetAddress/getLocalHost))
-        ip (get-lan-ip)]
+        ip(get-expo-host)]
     (-> "(ns env.dev)\n(def hostname \"%s\")\n(def ip \"%s\")"
         (format
          hostname
