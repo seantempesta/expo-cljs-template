@@ -82,6 +82,19 @@ lein prod-build
 ```
 #### 3. Open XDE and [Publish](https://docs.expo.io/versions/latest/guides/publishing.html) 
 
+## Upgrading
+As this is only an initial template, you'll want to upgrade to newer versions of `expo`.
+Honestly, it's usually as easy as reading the latest [blog post](https://blog.expo.io/expo-sdk-v20-0-0-is-now-available-79f84232a9d1) for the new version
+and following the upgrade directions at the bottom.  It usually comes down to:
+1. Updating the sdkVersion in `app.json`
+2. Updating the react dependencies in `package.json`
+3. Deleting your .node_modules directory
+4. Running yarn to install the updated dependencies
+5. Reopen your project in XDE and press “Restart” to clear the packager cache, or run exp start -c if you use use exp
+
+Sometimes you'll need to upgrade clojurescript rendering dependencies (`reagent` and `om-next`), and in that case I recommend checking
+the issues/commits in this project for solutions.
+
 ## Tips
 * Make sure you disable "Live Reload" and "Hot Reload" from the [Developer Menu](https://facebook.github.io/react-native/docs/debugging.html).
 (Figwheel does this better!)
