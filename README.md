@@ -6,7 +6,7 @@ Create [React Native](https://facebook.github.io/react-native/) apps in [Clojure
 
 ## Status
 ```diff
-+ [expo "19.0.0"]
++ [expo "20.0"]
 + [org.omcljs/om "1.0.0-beta1"]
 + [reagent "0.7.0"]
 + [re-frame "0.9.3"]      
@@ -22,7 +22,6 @@ Pull requests welcome!  I don't know enough about `Boot` or `Rum` (or have enoug
 * Easily test and publish your apps without installing XCode or Android Studio
 * Source map support when debugging Clojurescript
 * Supports React wrappers [Reagent](https://github.com/reagent-project/reagent) and [Om.Next](https://github.com/omcljs/om)
-* Auto generated externs for google closure advanced compilation (*experimental*)
  
 ## Need help?
 * [Expo Documentation](https://docs.expo.io/versions/latest/index.html) 
@@ -30,7 +29,7 @@ Pull requests welcome!  I don't know enough about `Boot` or `Rum` (or have enoug
 * [Clojure Slack](http://clojurians.net) #cljsrn
 
 ## Dependencies (install these first)
-* [Expo XDE](https://docs.expo.io/versions/v19.0.0/introduction/installation.html)
+* [Expo XDE](https://docs.expo.io/versions/latest/introduction/installation.html)
 * [Lein](http://leiningen.org/#install)
 * [Yarn](https://yarnpkg.com/lang/en/docs/install/)
 
@@ -89,6 +88,25 @@ lein clean
 lein prod-build
 ```
 #### 3. Open XDE and [Publish](https://docs.expo.io/versions/latest/guides/publishing.html) 
+
+## Externs
+Production builds use `advanced` closure compilation which sometimes cause problems with javascript interop ([details](https://github.com/cljsjs/packages/wiki/Creating-Externs)).  In the past we ran a custom script to try and prepare a proper externs file, but I've found it to be [very](https://github.com/seantempesta/expo-cljs-template/issues/12) [problematic](https://github.com/seantempesta/expo-cljs-template/issues/16) and am now recommending the following:
+* Try out the [:externs-inference](https://clojurescript.org/guides/externs#externs-inference) setting in the clojurescript compiler.  It should be enabled by default in newer versions of this template.
+* Use an interop package like [cljs-oops](https://github.com/binaryage/cljs-oops) for all `js` interop as dot references can get mangled `(.-property js-object)`
+* Add your externs manually to 
+
+## Upgrading
+As this is only an initial template, you'll want to upgrade to newer versions of `expo`.
+Honestly, it's usually as easy as reading the latest [blog post](https://blog.expo.io/expo-sdk-v20-0-0-is-now-available-79f84232a9d1) for the new version
+and following the upgrade directions at the bottom.  It usually comes down to:
+1. Updating the sdkVersion in `app.json`
+2. Updating the react dependencies in `package.json`
+3. Deleting your .node_modules directory
+4. Running yarn to install the updated dependencies
+5. Reopen your project in XDE and press “Restart” to clear the packager cache, or run exp start -c if you use use exp
+
+Sometimes you'll need to upgrade clojurescript rendering dependencies (`reagent` and `om-next`), and in that case I recommend checking
+the issues/commits in this project for solutions.
 
 ## Tips
 * Make sure you disable "Live Reload" and "Hot Reload" from the [Developer Menu](https://facebook.github.io/react-native/docs/debugging.html).

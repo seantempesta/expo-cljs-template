@@ -20,7 +20,7 @@
 (defn enable-source-maps
   []
   (println "Source maps enabled.")
-  (let [path "node_modules/metro-bundler/build/Server/index.js"]
+  (let [path "node_modules/metro-bundler/src/Server/index.js"]
     (spit path
           (str/replace (slurp path) "/\\.map$/" "/main.map$/"))))
 
@@ -28,7 +28,6 @@
   []
   (-> "'use strict';\n\n// cljsbuild adds a preamble mentioning goog so hack around it\nwindow.goog = {\n  provide() {},\n  require() {},\n};\nrequire('./target/env/index.js');\n"
       ((partial spit "main.js"))))
-
 
 (defn get-lan-ip
   "If .lan-ip file exists, it fetches the ip from the file.
@@ -64,7 +63,7 @@
 (defn write-env-dev
   []
   (let [hostname (.getHostName (java.net.InetAddress/getLocalHost))
-        ip (get-lan-ip)]
+        ip(get-expo-host)]
     (-> "(ns env.dev)\n(def hostname \"%s\")\n(def ip \"%s\")"
         (format
          hostname
