@@ -60,6 +60,14 @@ lein figwheel
 #### 5. Start XDE and open the project's directory
 From here you can Publish, Share, or run the app on a device.  See Expo's [documentation](https://docs.expo.io/versions/latest/guides/up-and-running.html) for more info. 
 
+#### 6. [optional] Set lan-ip option via file:
+Create file named .lan-ip with your ip. This ip will be used by figwheel to connect via websockets. If this file is not present it gets the ip from the system.
+
+In linux you can execute the following line to create the file.
+```shell
+source lan-ip.sh
+```
+
 
 ## To add new assets or npm modules
 1. Just `js/require` it somewhere in your code:

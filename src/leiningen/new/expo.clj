@@ -49,6 +49,7 @@
       [".projectile" (render ".projectile" data)]
       ["LICENSE" (render "LICENSE" data)]
       ["app.json" (render "app.json" data)]
+      ["lan-ip.sh" (render "lan-ip.sh" data)]
       ["js/figwheel-bridge.js" (render "js/figwheel-bridge.js" data)]
       ["assets/icons/app.png" (raw "assets/icons/app.png")]
       ["assets/icons/loading.png" (raw "assets/icons/loading.png")]
