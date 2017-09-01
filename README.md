@@ -27,6 +27,7 @@ Pull requests welcome!  I don't know enough about `Boot` or `Rum` (or have enoug
 * [Expo Documentation](https://docs.expo.io/versions/latest/index.html) 
 * [Expo Slack](https://slack.exponentjs.com/) #clojurescript
 * [Clojure Slack](http://clojurians.net) #cljsrn
+* [Hire me](http://tempesta.io).  I'm available for contract work and am happy to help you and your team quickly get up to speed creating your Clojurescript React Native app. :)
 
 ## Dependencies (install these first)
 * [Expo XDE](https://docs.expo.io/versions/latest/introduction/installation.html)
