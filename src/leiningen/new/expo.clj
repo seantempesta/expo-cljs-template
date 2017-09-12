@@ -27,9 +27,7 @@
           ["build.boot" (render "rum/build.boot" data)]
           ["src/{{sanitized}}/core.cljs" (render "rum/core.cljs" data)]
           ["env/dev/env/main.cljs" (render "rum/main_dev.cljs" data)]
-          ["src/re_natal/support.cljs" (render "rum/support.cljs" data)]
-          ["src/sablono/core.cljs" (render "rum/sablono_core.cljs" data)]
-          ["src/sablono/compiler.clj" (render "rum/sablono_compiler.clj" data)]]}
+          ["src/re_natal/support.cljs" (render "rum/support.cljs" data)]]}
    lib))
 
 (defn expo [name & lib]
