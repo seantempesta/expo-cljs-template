@@ -9,11 +9,11 @@ Create [React Native](https://facebook.github.io/react-native/) apps in [Clojure
 + [expo "20.0"]
 + [org.omcljs/om "1.0.0-beta1"]
 + [reagent "0.7.0"]
-+ [re-frame "0.9.3"]      
++ [re-frame "0.9.3"]
++ [rum "0.10.7"]
 - [boot *broken*]
-- [rum  *broken*]
 ```
-Pull requests welcome!  I don't know enough about `Boot` or `Rum` (or have enough time to learn) to support them! 
+Pull requests welcome!  I don't know enough about `Boot` (or have enough time to learn) to support them!
 
 
 ## Features
@@ -22,9 +22,9 @@ Pull requests welcome!  I don't know enough about `Boot` or `Rum` (or have enoug
 * Easily test and publish your apps without installing XCode or Android Studio
 * Source map support when debugging Clojurescript
 * Supports React wrappers [Reagent](https://github.com/reagent-project/reagent) and [Om.Next](https://github.com/omcljs/om)
- 
+
 ## Need help?
-* [Expo Documentation](https://docs.expo.io/versions/latest/index.html) 
+* [Expo Documentation](https://docs.expo.io/versions/latest/index.html)
 * [Expo Slack](https://slack.exponentjs.com/) #clojurescript
 * [Clojure Slack](http://clojurians.net) #cljsrn
 * [Hire me](http://tempesta.io).  I'm available for contract work and am happy to help you and your team quickly get up to speed creating your Clojurescript React Native app. :)
@@ -52,14 +52,14 @@ cd your-project
 yarn install
 ```
 
-#### 4. Start figwheel 
+#### 4. Start figwheel
 To auto-compile Clojurescript code and provide a development REPL
 ```shell
 lein figwheel
 ```
 
 #### 5. Start XDE and open the project's directory
-From here you can Publish, Share, or run the app on a device.  See Expo's [documentation](https://docs.expo.io/versions/latest/guides/up-and-running.html) for more info. 
+From here you can Publish, Share, or run the app on a device.  See Expo's [documentation](https://docs.expo.io/versions/latest/guides/up-and-running.html) for more info.
 
 #### 6. [optional] Set lan-ip option via file:
 Create file named .lan-ip with your ip. This ip will be used by figwheel to connect via websockets. If this file is not present it gets the ip from the system.
@@ -80,21 +80,21 @@ source lan-ip.sh
 2. Reload simulator or device
 
 ## Publishing
-#### 1. Clean the build directory 
+#### 1. Clean the build directory
 ```shell
 lein clean
 ```
-#### 2. Create a production build 
+#### 2. Create a production build
 ```shell
 lein prod-build
 ```
-#### 3. Open XDE and [Publish](https://docs.expo.io/versions/latest/guides/publishing.html) 
+#### 3. Open XDE and [Publish](https://docs.expo.io/versions/latest/guides/publishing.html)
 
 ## Externs
 Production builds use `advanced` closure compilation which sometimes cause problems with javascript interop ([details](https://github.com/cljsjs/packages/wiki/Creating-Externs)).  In the past we ran a custom script to try and prepare a proper externs file, but I've found it to be [very](https://github.com/seantempesta/expo-cljs-template/issues/12) [problematic](https://github.com/seantempesta/expo-cljs-template/issues/16) and am now recommending the following:
 * Try out the [:externs-inference](https://clojurescript.org/guides/externs#externs-inference) setting in the clojurescript compiler.  It should be enabled by default in newer versions of this template.
 * Use an interop package like [cljs-oops](https://github.com/binaryage/cljs-oops) for all `js` interop as dot references can get mangled `(.-property js-object)`
-* Add your externs manually to 
+* Add your externs manually to
 
 ## Upgrading
 As this is only an initial template, you'll want to upgrade to newer versions of `expo`.

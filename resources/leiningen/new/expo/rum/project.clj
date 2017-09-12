@@ -5,11 +5,12 @@
             :url  "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0-alpha10"]
                  [org.clojure/clojurescript "1.9.293"]
-                 [rum "0.10.7" :exclusions [cljsjs/react cljsjs/react-dom sablono]]
-                 [cljs-exponent "0.1.6"]
-                 [react-native-externs "0.0.2-SNAPSHOT"]]
+                 [rum "0.10.8" :exclusions [cljsjs/react cljsjs/react-dom sablono]]
+                 [cljs-exponent "0.1.7"]
+                 [sablono "0.8.1-SNAPSHOT"]
+                 [react-native-externs "0.1.0"]]
   :plugins [[lein-cljsbuild "1.1.4"]
-            [lein-figwheel "0.5.4-7"]]
+            [lein-figwheel "0.5.11"]]
   :clean-targets ["target/" "main.js"]
   :aliases {"figwheel" ["run" "-m" "user" "--figwheel"]
             "externs" ["do" "clean"
@@ -18,7 +19,7 @@
             "prod-build" ^{:doc "Recompile code with prod profile."}
             ["externs"
              ["with-profile" "prod" "cljsbuild" "once" "main"]]}
-  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.4-7"]
+  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.10"]
                                   [com.cemerick/piggieback "0.2.1"]]
                    :source-paths ["src" "env/dev"]
                    :cljsbuild    {:builds [{:id "main"
