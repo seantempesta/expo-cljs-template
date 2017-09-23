@@ -147,7 +147,7 @@
                                                        (vec))
                                           commented-modules (some->>
                                                               content
-                                                              (re-seq #"[;]+[\s]*\(js/require \"([^\"]+)\"\)")
+                                                              (re-seq #"[;]{2,}.*\(js/require \"([^\"]+)\"\)")
                                                               (map last)
                                                               (set))
                                           js-modules (if commented-modules
@@ -183,7 +183,7 @@
                              (vec))
                 commented-modules (some->>
                                     content
-                                    (re-seq #"[;]+[\s]*\(js/require \"([^\"]+)\"\)")
+                                    (re-seq #"[;]{2,}.*\(js/require \"([^\"]+)\"\)")
                                     (map last)
                                     (set))
                 js-modules (if commented-modules
