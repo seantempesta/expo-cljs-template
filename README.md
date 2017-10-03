@@ -6,7 +6,7 @@ Create [React Native](https://facebook.github.io/react-native/) apps in [Clojure
 
 ## Status
 ```diff
-+ [expo "20.0"]
++ [expo "21.0.0"]
 + [org.omcljs/om "1.0.0-beta1"]
 + [reagent "0.7.0"]
 + [re-frame "0.9.3"]
