@@ -8,6 +8,7 @@
             [clojure.set :as set]))
 ;; This namespace is loaded automatically by nREPL
 
+
 (defn get-cljs-builds
   []
   (let [project-config (->> "project.clj"
@@ -27,7 +28,7 @@
 
 (defn write-main-js
   []
-  (-> "'use strict';\n\n// cljsbuild adds a preamble mentioning goog so hack around it\nwindow.goog = {\n  provide() {},\n  require() {},\n};\nrequire('./target/env/index.js');\n"
+  (-> "'use strict';\n\n// cljsbuild adds a preamble mentioning goog so hack around it\nwindow.goog = {\n  provide() {},\n  require() {},\n};\nrequire('./target/expo/env/index.js');\n"
       ((partial spit "main.js"))))
 
 (defn get-expo-settings []
@@ -88,7 +89,8 @@
 
   (defn rebuild-env-index
     [js-modules]
-    (let [modules (->> (file-seq (io/file "assets"))
+    (let [devHost (get-expo-ip)
+          modules (->> (file-seq (io/file "assets"))
                        (filter #(and (not (re-find #"DS_Store" (str %)))
                                      (.isFile %)))
                        (map (fn [file] (when-let [unix-path (->> file .toPath .iterator iterator-seq (str/join "/"))]
@@ -109,13 +111,15 @@
                         (->> modules
                              (map #(format "(js/require \"%s\")"
                                            (-> %
+                                               (str/replace "../../" "../../../")
                                                (str/replace "\\" "/")
                                                (str/replace "@2x" "")
                                                (str/replace "@3x" ""))))))]
       (try
-        (-> "(ns env.index\n  (:require [env.dev :as dev]))\n\n;; undo main.js goog preamble hack\n(set! js/window.goog js/undefined)\n\n(-> (js/require \"figwheel-bridge\")\n    (.withModules %s)\n    (.start \"main\"))\n"
+        (-> "(ns env.index\n  (:require [env.dev :as dev]))\n\n;; undo main.js goog preamble hack\n(set! js/window.goog js/undefined)\n\n(-> (js/require \"figwheel-bridge\")\n    (.withModules %s)\n    (.start \"main\" \"expo\" \"%s\"))\n"
             (format
-              (str "#js " (with-out-str (println modules-map))))
+              (str "#js " (with-out-str (println modules-map)))
+              devHost)
             ((partial spit "env/dev/env/index.cljs")))
 
         (catch Exception e
@@ -208,8 +212,7 @@
     (write-env-dev)
     (watch-for-external-modules)
     (ra/start-figwheel!
-      {:figwheel-options {}
-       :build-ids        (if (seq build-ids)
+      {:build-ids        (if (seq build-ids)
                            build-ids
                            ["main"])
        :all-builds       (get-cljs-builds)})

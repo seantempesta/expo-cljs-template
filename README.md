@@ -40,6 +40,7 @@ Pull requests welcome!  I don't know enough about `Boot` (or have enough time to
 ```shell
 lein new expo your-project +reagent
 lein new expo your-project +om
+lein new expo your-project +rum
 ```
 #### 2. Change into your project's directory
 

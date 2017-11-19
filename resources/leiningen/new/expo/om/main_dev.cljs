@@ -1,4 +1,4 @@
-(ns ^:figwheel-no-load env.main
+(ns ^:figwheel-no-load env.expo.main
   (:require [om.next :as om]
             [{{name}}.core :as core]
             [{{name}}.state :as state]

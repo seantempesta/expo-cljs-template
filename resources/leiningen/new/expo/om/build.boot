@@ -33,7 +33,7 @@
                   :source-paths ["src" "env/dev"]
                   :figwheel true
                   :compiler     {:output-to     "not-used.js"
-                                 :main          "env.main"
+                                 :main          "env.expo.main"
                                  :optimizations :none
                                  :output-dir    "."}}]
     :figwheel-options {:open-file-command "emacsclient"
@@ -49,8 +49,8 @@
   (let [start (System/nanoTime)]
     (b/build ["src" "env/prod"]
              {:output-to     "main.js"
-              :main          "env.main"
-              :output-dir    "target"
+              :main          "env.expo.main"
+              :output-dir    "target/expo"
               :static-fns    true
               :externs       ["js/externs.js"]
               :parallel-build     true

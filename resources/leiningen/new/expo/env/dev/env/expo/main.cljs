@@ -1,16 +1,18 @@
 (ns ^:figwheel-no-load env.expo.main
-  (:require [{{name}}.core :as core]
+  (:require [reagent.core :as r]
+            [test.core :as core]
             [figwheel.client :as figwheel :include-macros true]
             [env.dev]))
 
 (enable-console-print!)
 
+(def cnt (r/atom 0))
+(defn reloader [] @cnt [core/app-root])
+(def root-el (r/as-element [reloader]))
+
 (figwheel/watch-and-reload
  :websocket-url (str "ws://" env.dev/ip ":3449/figwheel-ws")
  :heads-up-display false
- ;; TODO make this Rum something
- :jsload-callback #(#'core/mount-app))
+ :jsload-callback #(swap! cnt inc))
 
 (core/init)
-
-(def root-el (core/root-component-factory))
