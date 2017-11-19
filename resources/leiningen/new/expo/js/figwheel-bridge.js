@@ -83,10 +83,12 @@ var figwheelApp = function (platform, devHost) {
 
         componentDidMount: function () {
             var app = this;
-            loadApp(platform, devHost, function (appRoot) {
-                app.setState({root: appRoot, loaded: true});
-		        listenToFigwheelMessages();
-            });
+            if (typeof goog === "undefined") {
+                loadApp(platform, devHost, function (appRoot) {
+                    app.setState({root: appRoot, loaded: true});
+		    listenToFigwheelMessages();
+                });
+            }
         }
     })
 };
