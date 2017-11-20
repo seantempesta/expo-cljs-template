@@ -1,4 +1,4 @@
 (ns env.expo.main
-  (:require [test.core :as core]))
+  (:require [{{name}}.core :as core]))
 
 (core/init)
