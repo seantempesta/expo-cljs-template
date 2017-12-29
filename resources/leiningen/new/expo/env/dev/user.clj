@@ -73,7 +73,7 @@
       (case (get expo-settings "hostType")
         "lan" (get-lan-ip)
         "localhost" "localhost"
-        "tunnel" (throw (Exception. "Expo Setting tunnel doesn't work with figwheel.  Please set to LAN or Localhost.")))
+        "tunnel" (throw (Exception. "Expo Setting 'tunnel' doesn't work with figwheel.  Please set to 'lan' or 'localhost'.")))
       "localhost"))                                         ;; default
 
   (defn write-env-dev
