@@ -67,13 +67,13 @@
            (first)
            (.getAddress)
            (.getHostAddress)))))
-         
+
   (defn get-expo-ip []
     (if-let [expo-settings (get-expo-settings)]
       (case (get expo-settings "hostType")
         "lan" (get-lan-ip)
         "localhost" "localhost"
-        "tunnel" (throw (Exception. "Expo Setting tunnel doesn't work with figwheel.  Please set to LAN or Localhost.")))
+        "tunnel" (throw (Exception. "Expo Setting \"hostType\": \"tunnel\" doesn't work with figwheel. Check .expo/settings.json, please set value to \"lan\" or \"localhost\".")))
       "localhost"))                                         ;; default
 
   (defn write-env-dev
