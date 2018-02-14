@@ -2,8 +2,8 @@
   "Helpers and adapters to be able to mount/remount Rum components in a React Native application.")
 
 (def React (js/require "react"))
-(def create-class (.-createClass React))
 (def create-factory (.-createFactory React))
+(def create-class (js/require "create-react-class"))
 
 (defonce root-component (atom nil))
 (defonce mounted-element (atom nil))
