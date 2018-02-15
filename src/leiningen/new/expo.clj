@@ -33,7 +33,7 @@
 (defn expo [name & lib]
   (main/info "Generating fresh Expo project.")
   (main/info "README.md contains instructions to get you started.")
-  (main/info "If you have any questions, you can ask us on Expo slack #clojurescript channel. https://slack.expo.io/")
+  (main/info "If you have any questions, you can ask us on Clojurians #cljsrn channel. http://clojurians.net")
 
   (let [data {:name name
               :sanitized (name-to-path name)}
