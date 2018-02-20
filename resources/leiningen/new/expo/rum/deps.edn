@@ -1,0 +1,19 @@
+{:deps
+  {org.clojure/clojure {:mvn/version "1.9.0-alpha10"}
+   org.clojure/clojurescript {:mvn/version "1.9.293" }
+   rum {:mvn/version "0.11.1" :exclusions [cljsjs/react cljsjs/react-dom sablono]}
+   cljs-exponent {:mvn/version "0.1.7"}
+   sablono {:mvn/version "0.8.1-SNAPSHOT"}
+   react-native-externs {:mvn/version "0.1.0"}}
+  :aliases
+   {:repl
+     {:extra-paths ["env/dev"]
+      :main-opts ["-m" "user" "--figwheel"]
+      :extra-deps
+       {com.cemerick/piggieback {:mvn/version "0.2.2"
+                                 :exclusions  [com.google.javascript/closure-compiler]}
+        figwheel-sidecar        {:mvn/version "0.5.14"
+                                 :exclusions  [com.google.javascript/closure-compiler]}}}
+    :prod
+     {:extra-paths ["env/prod"]
+      :main-opts ["-m" "user"]}}}
