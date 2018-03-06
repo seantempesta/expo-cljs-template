@@ -10,7 +10,7 @@ Create [React Native](https://facebook.github.io/react-native/) apps in [Clojure
 + [org.omcljs/om "1.0.0-beta1"]
 + [reagent "0.7.0"]
 + [re-frame "0.9.3"]
-+ [rum "0.10.7"]
++ [rum "0.11.1"]
 - [boot *broken*]
 ```
 Pull requests welcome!  I don't know enough about `Boot` (or have enough time to learn) to support them!
