@@ -22,7 +22,7 @@
 (defn enable-source-maps
   []
   (println "Source maps enabled.")
-  (let [path "node_modules/metro-bundler/src/Server/index.js"]
+  (let [path "node_modules/metro/src/Server/index.js"]
     (spit path
           (str/replace (slurp path) "/\\.map$/" "/main.map$/"))))
 

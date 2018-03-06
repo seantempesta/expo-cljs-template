@@ -3,26 +3,16 @@
     "name": "{{name}}",
     "description": "No description",
     "slug": "{{name}}",
-    "sdkVersion": "22.0.0",
+    "sdkVersion": "25.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
     "privacy": "public",
     "icon": "./assets/icons/app.png",
-    "notification": {
-      "icon": "./assets/icons/loading.png",
-      "color": "#000000"
-    },
-    "loading": {
-      "icon": "https://s3.amazonaws.com/exp-brand-assets/ExponentEmptyManifest_192.png",
-      "hideExponentText": false
-    },
-    "packagerOpts": {
-      "assetExts": [
-        "ttf",
-        "otf"
-      ],
-      "nonPersistent": ""
+    "splash": {
+      "image": "./assets/icons/loading.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     },
     "ios": {
       "supportsTablet": true
