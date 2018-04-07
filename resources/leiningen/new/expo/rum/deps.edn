@@ -1,6 +1,6 @@
 {:deps
-  {org.clojure/clojure {:mvn/version "1.9.0-alpha10"}
-   org.clojure/clojurescript {:mvn/version "1.9.293" }
+  {org.clojure/clojure {:mvn/version "1.9.0"}
+   org.clojure/clojurescript {:mvn/version "1.10.238" }
    rum {:mvn/version "0.11.1" :exclusions [cljsjs/react cljsjs/react-dom sablono]}
    cljs-exponent {:mvn/version "0.1.7"}
    sablono {:mvn/version "0.8.1-SNAPSHOT"}

@@ -1,6 +1,6 @@
 {:deps
-  {org.clojure/clojure {:mvn/version "1.9.0-alpha10"}
-   org.clojure/clojurescript {:mvn/version "1.9.293" }
+  {org.clojure/clojure {:mvn/version "1.9.0"}
+   org.clojure/clojurescript {:mvn/version "1.10.238" }
    org.omcljs/om {:mvn/version "1.0.0-beta1" :exclusions [cljsjs/react cljsjs/react-dom]}
    react-native-externs {:mvn/version "0.1.0"}}
   :aliases
