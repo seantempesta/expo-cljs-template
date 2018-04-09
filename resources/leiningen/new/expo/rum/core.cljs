@@ -5,6 +5,7 @@
               [cljs-exponent.components :refer [text view image touchable-highlight] :as rn]))
 
 (def logo-img (js/require "./assets/images/cljs.png"))
+(def expo (js/require "expo"))
 
 (defn alert [title]
   (.alert rn/alert title))
@@ -26,4 +27,4 @@
 
 (defn init []
   (mount-app)
-  (.registerComponent rn/app-registry "main" (fn [] root-component-factory)))
+  (.registerRootComponent expo root-component-factory))

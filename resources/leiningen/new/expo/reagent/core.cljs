@@ -5,6 +5,7 @@
               [{{name}}.subs]))
 
 (def ReactNative (js/require "react-native"))
+(def expo (js/require "expo"))
 
 (def app-registry (.-AppRegistry ReactNative))
 (def text (r/adapt-react-class (.-Text ReactNative)))
@@ -30,4 +31,4 @@
 
 (defn init []
   (dispatch-sync [:initialize-db])
-  (.registerComponent app-registry "main" #(r/reactify-component app-root)))
+  (.registerRootComponent expo (r/reactify-component app-root)))

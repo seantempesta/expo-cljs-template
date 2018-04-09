@@ -16,6 +16,7 @@ var config = {
 var React = require('react');
 var createReactClass = require('create-react-class');
 var ReactNative = require('react-native');
+var Expo = require('expo');
 var WebSocket = require('WebSocket');
 var self;
 var evaluate = eval; // This is needed, direct calls to eval does not work (RN packager???)
@@ -219,8 +220,7 @@ function loadApp(platform, devHost, onLoadCb) {
 }
 
 function startApp(appName, platform, devHost) {
-    ReactNative.AppRegistry.registerComponent(
-        appName, () => figwheelApp(platform, devHost));
+    Expo.registerRootComponent(figwheelApp(platform, devHost));
 }
 
 function withModules(moduleById) {
