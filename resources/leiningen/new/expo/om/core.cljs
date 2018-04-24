@@ -1,6 +1,7 @@
 (ns {{name}}.core
     (:require [om.next :as om :refer-macros [defui]]
               [re-natal.support :as sup]
+              [oops.core :refer [ocall]]
               [{{name}}.state :as state]))
 
 (def logo-img (js/require "./assets/images/cljs.png"))
@@ -41,4 +42,4 @@
 
 (defn init []
   (om/add-root! state/reconciler AppRoot 1)
-  (.registerRootComponent expo app-root))
+  (ocall expo "registerRootComponent" app-root))

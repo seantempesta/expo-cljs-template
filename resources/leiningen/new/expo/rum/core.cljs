@@ -2,6 +2,7 @@
     (:require-macros [rum.core :refer [defc]])
     (:require [re-natal.support :as support]
               [rum.core :as rum]
+              [oops.core :refer [ocall]]
               [cljs-exponent.components :refer [text view image touchable-highlight] :as rn]))
 
 (def logo-img (js/require "./assets/images/cljs.png"))
@@ -27,4 +28,4 @@
 
 (defn init []
   (mount-app)
-  (.registerRootComponent expo root-component-factory))
+  (ocall expo "registerRootComponent" root-component-factory))

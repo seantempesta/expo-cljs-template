@@ -1,13 +1,13 @@
 (ns {{name}}.core
     (:require [reagent.core :as r :refer [atom]]
               [re-frame.core :refer [subscribe dispatch dispatch-sync]]
+              [oops.core :refer [ocall]]
               [{{name}}.handlers]
               [{{name}}.subs]))
 
 (def ReactNative (js/require "react-native"))
 (def expo (js/require "expo"))
 
-(def app-registry (.-AppRegistry ReactNative))
 (def text (r/adapt-react-class (.-Text ReactNative)))
 (def view (r/adapt-react-class (.-View ReactNative)))
 (def image (r/adapt-react-class (.-Image ReactNative)))
@@ -31,4 +31,4 @@
 
 (defn init []
   (dispatch-sync [:initialize-db])
-  (.registerRootComponent expo (r/reactify-component app-root)))
+  (ocall expo "registerRootComponent" (r/reactify-component app-root)))
