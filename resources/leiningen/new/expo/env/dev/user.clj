@@ -125,6 +125,15 @@
         (catch Exception e
           (println "Error: " e)))))
 
+(defn- required-modules
+  "returns a vector of string with the names of the imported modules. Ignoring those
+  that are commented out"
+  [file-content]
+  (some->> file-content
+           (re-seq #"(?m)^[^;\n]+?\(js/require \"([^\"]+)\"\)")
+           (map last)
+           (vec)))
+
   ;; Each file maybe corresponds to multiple modules.
   (defn watch-for-external-modules
     []
@@ -144,19 +153,7 @@
 
                                   (when (.exists file)
                                     (let [content (slurp file)
-                                          js-modules (some->>
-                                                       content
-                                                       (re-seq #"\(js/require \"([^\"]+)\"\)")
-                                                       (map last)
-                                                       (vec))
-                                          commented-modules (some->>
-                                                              content
-                                                              (re-seq #"[;]{2,}.*\(js/require \"([^\"]+)\"\)")
-                                                              (map last)
-                                                              (set))
-                                          js-modules (if commented-modules
-                                                       (vec (remove commented-modules js-modules))
-                                                       js-modules)]
+                                          js-modules (required-modules content)]
                                       (let [old-js-modules (get m file-name)]
                                         (when (not= old-js-modules js-modules)
                                           (let [new-m (if (seq js-modules)
@@ -180,19 +177,7 @@
           (let [file-name (-> (.getPath file)
                               (str/replace (str (System/getProperty "user.dir") "/") ""))
                 content (slurp file)
-                js-modules (some->>
-                             content
-                             (re-seq #"\(js/require \"([^\"]+)\"\)")
-                             (map last)
-                             (vec))
-                commented-modules (some->>
-                                    content
-                                    (re-seq #"[;]{2,}.*\(js/require \"([^\"]+)\"\)")
-                                    (map last)
-                                    (set))
-                js-modules (if commented-modules
-                             (vec (remove commented-modules js-modules))
-                             js-modules)]
+                js-modules (required-modules content)]
             (if js-modules
               (swap! m assoc file-name (vec js-modules))))))
       (spit path @m)
