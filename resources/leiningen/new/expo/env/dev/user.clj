@@ -68,10 +68,17 @@
            (.getAddress)
            (.getHostAddress)))))
 
-  (defn get-expo-ip []
+(def ip-validator #"\d+\.\d+\.\d+\.\d+")
+
+(defn get-expo-ip []
     (if-let [expo-settings (get-expo-settings)]
       (case (get expo-settings "hostType")
-        "lan" (get-lan-ip)
+        "lan" (let [result (get-lan-ip)]
+                (assert (re-matches ip-validator result)
+                        (str "The found IP " result " is not valid.
+                            Please enter the value manually in the .lan-ip file"))
+                (println "Expo client app will use" result "to connect to the figwheel server")
+                result)
         "localhost" "localhost"
         "tunnel" (throw (Exception. "Expo Setting \"hostType\": \"tunnel\" doesn't work with figwheel. Check .expo/settings.json, please set value to \"lan\" or \"localhost\".")))
       "localhost"))                                         ;; default
