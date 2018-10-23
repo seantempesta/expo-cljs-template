@@ -30,7 +30,7 @@ Pull requests welcome!  I don't know enough about `Boot` (or have enough time to
 * [Hire me](http://tempesta.io).  I'm available for contract work and am happy to help you and your team quickly get up to speed creating your Clojurescript React Native app. :)
 
 ## Dependencies (install these first)
-* [Expo XDE](https://docs.expo.io/versions/latest/introduction/installation.html)
+* [Expo tools](https://docs.expo.io/versions/v30.0.0/introduction/installation)
 * [Lein](http://leiningen.org/#install)
 * [Yarn](https://yarnpkg.com/lang/en/docs/install/)
 
@@ -59,7 +59,10 @@ To auto-compile Clojurescript code and provide a development REPL
 lein figwheel
 ```
 
-#### 5. Start XDE and open the project's directory
+#### 5. Start expo and open the project's directory
+```shell
+$ expo start
+```
 From here you can Publish, Share, or run the app on a device.  See Expo's [documentation](https://docs.expo.io/versions/latest/guides/up-and-running.html) for more info.
 
 #### 6. [optional] Set lan-ip option via file:
@@ -69,7 +72,7 @@ In linux you can execute the following line to create the file.
 ```shell
 source lan-ip.sh
 ```
-
+If this doesn't work (arch and ubuntu confirmed not to work), manually put your computer's IP address in .lan-ip and open firewall ports 19000, 19001. If you use Cncomplicated Firewall, it's `sudo ufw allow 19000/tcp`
 
 ## To add new assets or npm modules
 1. Just `js/require` it somewhere in your code:
@@ -89,7 +92,10 @@ lein clean
 ```shell
 lein prod-build
 ```
-#### 3. Open XDE and [Publish](https://docs.expo.io/versions/latest/guides/publishing.html)
+#### 3. Open [Publish](https://docs.expo.io/versions/latest/guides/publishing.html) with expo
+```shell
+$ expo publish
+```
 
 ## Externs
 Production builds use `advanced` closure compilation which sometimes cause problems with javascript interop ([details](https://github.com/cljsjs/packages/wiki/Creating-Externs)).  In the past we ran a custom script to try and prepare a proper externs file, but I've found it to be [very](https://github.com/seantempesta/expo-cljs-template/issues/12) [problematic](https://github.com/seantempesta/expo-cljs-template/issues/16) and am now recommending the following:
@@ -105,7 +111,7 @@ and following the upgrade directions at the bottom.  It usually comes down to:
 2. Updating the react dependencies in `package.json`
 3. Deleting your .node_modules directory
 4. Running yarn to install the updated dependencies
-5. Reopen your project in XDE and press “Restart” to clear the packager cache, or run exp start -c if you use use exp
+5. Run expo start -c
 
 Sometimes you'll need to upgrade clojurescript rendering dependencies (`reagent` and `om-next`), and in that case I recommend checking
 the issues/commits in this project for solutions.
