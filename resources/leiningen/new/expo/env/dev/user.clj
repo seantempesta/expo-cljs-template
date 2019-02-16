@@ -51,7 +51,8 @@
       (->> (java.net.NetworkInterface/getNetworkInterfaces)
            (enumeration-seq)
            (filter #(not (or (str/starts-with? (.getName %) "docker")
-                             (str/starts-with? (.getName %) "br-"))))
+                             (str/starts-with? (.getName %) "br-")
+                             (str/starts-with? (.getName %) "virbr"))))
            (map #(.getInterfaceAddresses %))
            (map
              (fn [ip]
