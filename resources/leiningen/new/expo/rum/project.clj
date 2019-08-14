@@ -3,15 +3,13 @@
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url  "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.9.0"]
-                 [org.clojure/clojurescript "1.10.238"]
-                 [binaryage/oops "0.5.8"]
-                 [rum "0.11.1" :exclusions [cljsjs/react cljsjs/react-dom sablono]]
-                 [cljs-exponent "0.1.7"]
-                 [sablono "0.8.1-SNAPSHOT"]
-                 [react-native-externs "0.1.0"]]
+  :dependencies [[org.clojure/clojure "1.10.1"]
+                 [org.clojure/clojurescript "1.10.520"]
+                 [binaryage/oops "0.7.0"]
+                 [reagent "0.8.1" :exclusions [cljsjs/react cljsjs/react-dom cljsjs/react-dom-server cljsjs/create-react-class]]
+                 [re-frame "0.10.8"]]
   :plugins [[lein-cljsbuild "1.1.4"]
-            [lein-figwheel "0.5.14"]]
+            [lein-figwheel "0.5.19"]]
   :clean-targets ["target/" "main.js"]
   :aliases {"figwheel" ["run" "-m" "user" "--figwheel"]
             "externs" ["do" "clean"
@@ -20,17 +18,18 @@
             "prod-build" ^{:doc "Recompile code with prod profile."}
             ["externs"
              ["with-profile" "prod" "cljsbuild" "once" "main"]]}
-  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.14"]
-                                  [com.cemerick/piggieback "0.2.1"]]
+  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.18"]
+                                  [cider/piggieback "0.4.1"]]
                    :source-paths ["src" "env/dev"]
                    :cljsbuild    {:builds [{:id "main"
                                             :source-paths ["src" "env/dev"]
                                             :figwheel     true
-                                            :compiler     {:output-to     "target/expo/not-used.js"
+                                            :compiler     {:output-to     "target/expo/index.js"
                                                            :main          "env.expo.main"
                                                            :output-dir    "target/expo"
-                                                           :optimizations :none}}]}
-                   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}
+                                                           :optimizations :none
+                                                           :target        :nodejs}}]}
+                   :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}}
              :prod {:cljsbuild {:builds [{:id "main"
                                           :source-paths ["src" "env/prod"]
                                           :compiler     {:output-to     "main.js"
@@ -40,5 +39,6 @@
                                                          :externs       ["js/externs.js"]
                                                          :parallel-build     true
                                                          :optimize-constants true
-                                                         :optimizations :advanced
-                                                         :closure-defines {"goog.DEBUG" false}}}]}}})
+                                                         :optimizations      :advanced
+                                                         :closure-defines    {"goog.DEBUG" false}
+                                                         :target             :nodejs}}]}}})
