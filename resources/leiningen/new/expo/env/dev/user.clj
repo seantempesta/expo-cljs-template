@@ -22,7 +22,7 @@
 (defn enable-source-maps
   []
   (println "Source maps enabled.")
-  (let [path "node_modules/metro/src/Server/index.js"]
+  (let [path "node_modules/metro/src/Server.js"]
     (spit path
           (str/replace (slurp path) "/\\.map$/" "/main.map$/"))))
 
@@ -116,7 +116,7 @@
                                                (str/replace "@2x" "")
                                                (str/replace "@3x" ""))))))]
       (try
-        (-> "(ns env.index\n  (:require [env.dev :as dev]))\n\n;; undo main.js goog preamble hack\n(set! js/window.goog js/undefined)\n\n(-> (js/require \"figwheel-bridge\")\n    (.withModules %s)\n    (.start \"main\" \"expo\" \"%s\"))\n"
+        (-> "(ns env.index\n  (:require [env.dev :as dev]))\n\n;; undo main.js goog preamble hack\n(set! js/window.goog js/undefined)\n\n(-> (js/require \"../../../js/figwheel-bridge\")\n    (.withModules %s)\n    (.start \"main\" \"expo\" \"%s\"))\n"
             (format
               (str "#js " (with-out-str (println modules-map)))
               devHost)
