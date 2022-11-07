@@ -9,6 +9,7 @@
     "expo": "^46.0.0",
     "create-react-class": "15.6.3",
     "react": "18.0.0",
-    "react-native": "0.69.6"
+    "react-native": "0.69.6",
+     "websocket": "^1.0.34"
   }
 }
