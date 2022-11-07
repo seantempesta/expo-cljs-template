@@ -16,7 +16,7 @@ var React = require('react');
 var createReactClass = require('create-react-class');
 var ReactNative = require('react-native');
 var Expo = require('expo');
-var WebSocket = require('WebSocket');
+var WebSocket = require('websocket');
 var self;
 var evaluate = eval; // This is needed, direct calls to eval does not work (RN packager???)
 var externalModules = {};
